@@ -1,0 +1,342 @@
+{
+  "course": "Calculus 1",
+  "courseCode": "06016301",
+  "institution": "KMITL (King Mongkut's Institute of Technology Ladkrabang)",
+  "source": "https://onlearn.it.kmitl.ac.th/course/view.php?id=1813",
+  "totalFiles": 37,
+  "files": [
+    {
+      "filename": "01_integration_by_substitution.md",
+      "path": "raw_slides/01_integration_by_substitution.md",
+      "size": "0.8 KB",
+      "sizeBytes": 868,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "01_integration_by_substitution"
+    },
+    {
+      "filename": "02_polynomial_long_division_and_rational_functions.md",
+      "path": "raw_slides/02_polynomial_long_division_and_rational_functions.md",
+      "size": "0.7 KB",
+      "sizeBytes": 668,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "02_polynomial_long_division_and_rational_functions"
+    },
+    {
+      "filename": "03_integration_by_parts.md",
+      "path": "raw_slides/03_integration_by_parts.md",
+      "size": "0.9 KB",
+      "sizeBytes": 890,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "03_integration_by_parts"
+    },
+    {
+      "filename": "04_trigonometric_substitution.md",
+      "path": "raw_slides/04_trigonometric_substitution.md",
+      "size": "0.9 KB",
+      "sizeBytes": 964,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "04_trigonometric_substitution"
+    },
+    {
+      "filename": "05_partial_fraction_decomposition.md",
+      "path": "raw_slides/05_partial_fraction_decomposition.md",
+      "size": "0.7 KB",
+      "sizeBytes": 669,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "05_partial_fraction_decomposition"
+    },
+    {
+      "filename": "06_reduction_formulas_and_tables.md",
+      "path": "raw_slides/06_reduction_formulas_and_tables.md",
+      "size": "0.5 KB",
+      "sizeBytes": 561,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "06_reduction_formulas_and_tables"
+    },
+    {
+      "filename": "07_sequences_and_infinite_series.md",
+      "path": "raw_slides/07_sequences_and_infinite_series.md",
+      "size": "0.6 KB",
+      "sizeBytes": 635,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "07_sequences_and_infinite_series"
+    },
+    {
+      "filename": "08_ratio_test_and_convergence.md",
+      "path": "raw_slides/08_ratio_test_and_convergence.md",
+      "size": "0.6 KB",
+      "sizeBytes": 612,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "08_ratio_test_and_convergence"
+    },
+    {
+      "filename": "09_power_series_radius_and_interval.md",
+      "path": "raw_slides/09_power_series_radius_and_interval.md",
+      "size": "0.7 KB",
+      "sizeBytes": 707,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "09_power_series_radius_and_interval"
+    },
+    {
+      "filename": "10_taylor_and_maclaurin_series.md",
+      "path": "raw_slides/10_taylor_and_maclaurin_series.md",
+      "size": "1.5 KB",
+      "sizeBytes": 1487,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "10_taylor_and_maclaurin_series"
+    },
+    {
+      "filename": "11_course_syllabus_and_rules.md",
+      "path": "raw_slides/11_course_syllabus_and_rules.md",
+      "size": "0.5 KB",
+      "sizeBytes": 553,
+      "extension": ".md",
+      "category": "Study Guides & Syllabus",
+      "title": "11_course_syllabus_and_rules"
+    },
+    {
+      "filename": "Exercise_limit_เฉลย.pdf",
+      "path": "raw_slides/Exercise_limit_เฉลย.pdf",
+      "size": "681.2 KB",
+      "sizeBytes": 697569,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "Exercise_limit_เฉลย"
+    },
+    {
+      "filename": "Single_and_Multivariable_6th_Edition.pdf",
+      "path": "raw_slides/Single_and_Multivariable_6th_Edition.pdf",
+      "size": "31.1 MB",
+      "sizeBytes": 32579964,
+      "extension": ".pdf",
+      "category": "Reference Textbooks",
+      "title": "Single_and_Multivariable_6th_Edition"
+    },
+    {
+      "filename": "Week 10 (1).pdf",
+      "path": "raw_slides/Week 10 (1).pdf",
+      "size": "3.4 MB",
+      "sizeBytes": 3552874,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 10 (1)"
+    },
+    {
+      "filename": "Week 11 (1).pdf",
+      "path": "raw_slides/Week 11 (1).pdf",
+      "size": "3.5 MB",
+      "sizeBytes": 3662419,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 11 (1)"
+    },
+    {
+      "filename": "Week 11 (3).pdf",
+      "path": "raw_slides/Week 11 (3).pdf",
+      "size": "4.0 MB",
+      "sizeBytes": 4179930,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 11 (3)"
+    },
+    {
+      "filename": "Week 13.pdf",
+      "path": "raw_slides/Week 13.pdf",
+      "size": "3.1 MB",
+      "sizeBytes": 3270749,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 13"
+    },
+    {
+      "filename": "Week 14.pdf",
+      "path": "raw_slides/Week 14.pdf",
+      "size": "5.7 MB",
+      "sizeBytes": 6024094,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 14"
+    },
+    {
+      "filename": "Week 15.pdf",
+      "path": "raw_slides/Week 15.pdf",
+      "size": "3.3 MB",
+      "sizeBytes": 3411578,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 15"
+    },
+    {
+      "filename": "Week 2 (2).pdf",
+      "path": "raw_slides/Week 2 (2).pdf",
+      "size": "3.9 MB",
+      "sizeBytes": 4097763,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 2 (2)"
+    },
+    {
+      "filename": "Week 3 (1).pdf",
+      "path": "raw_slides/Week 3 (1).pdf",
+      "size": "3.9 MB",
+      "sizeBytes": 4040028,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 3 (1)"
+    },
+    {
+      "filename": "Week 4 (1).pdf",
+      "path": "raw_slides/Week 4 (1).pdf",
+      "size": "2.3 MB",
+      "sizeBytes": 2365446,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 4 (1)"
+    },
+    {
+      "filename": "Week 5 (1).pdf",
+      "path": "raw_slides/Week 5 (1).pdf",
+      "size": "2.0 MB",
+      "sizeBytes": 2099151,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 5 (1)"
+    },
+    {
+      "filename": "Week 6 (2).pdf",
+      "path": "raw_slides/Week 6 (2).pdf",
+      "size": "2.2 MB",
+      "sizeBytes": 2308787,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 6 (2)"
+    },
+    {
+      "filename": "Week 7 (1).pdf",
+      "path": "raw_slides/Week 7 (1).pdf",
+      "size": "3.7 MB",
+      "sizeBytes": 3920652,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 7 (1)"
+    },
+    {
+      "filename": "Week 8 (1).pdf",
+      "path": "raw_slides/Week 8 (1).pdf",
+      "size": "3.0 MB",
+      "sizeBytes": 3144006,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week 8 (1)"
+    },
+    {
+      "filename": "Week1 Function (1).pdf",
+      "path": "raw_slides/Week1 Function (1).pdf",
+      "size": "13.4 MB",
+      "sizeBytes": 14079258,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week1 Function (1)"
+    },
+    {
+      "filename": "Week9  (2).pdf",
+      "path": "raw_slides/Week9  (2).pdf",
+      "size": "2.9 MB",
+      "sizeBytes": 3039268,
+      "extension": ".pdf",
+      "category": "Lecture Notes & Slides",
+      "title": "Week9  (2)"
+    },
+    {
+      "filename": "เฉลย Homework11 (1).pdf",
+      "path": "raw_slides/เฉลย Homework11 (1).pdf",
+      "size": "345.1 KB",
+      "sizeBytes": 353403,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework11 (1)"
+    },
+    {
+      "filename": "เฉลย Homework2.pdf",
+      "path": "raw_slides/เฉลย Homework2.pdf",
+      "size": "112.0 KB",
+      "sizeBytes": 114649,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework2"
+    },
+    {
+      "filename": "เฉลย Homework3.pdf",
+      "path": "raw_slides/เฉลย Homework3.pdf",
+      "size": "530.7 KB",
+      "sizeBytes": 543445,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework3"
+    },
+    {
+      "filename": "เฉลย Homework5.pdf",
+      "path": "raw_slides/เฉลย Homework5.pdf",
+      "size": "728.2 KB",
+      "sizeBytes": 745639,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework5"
+    },
+    {
+      "filename": "เฉลย Homework6.pdf",
+      "path": "raw_slides/เฉลย Homework6.pdf",
+      "size": "488.4 KB",
+      "sizeBytes": 500151,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework6"
+    },
+    {
+      "filename": "เฉลย Homework7.pdf",
+      "path": "raw_slides/เฉลย Homework7.pdf",
+      "size": "285.2 KB",
+      "sizeBytes": 292011,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework7"
+    },
+    {
+      "filename": "เฉลย Homework9.pdf",
+      "path": "raw_slides/เฉลย Homework9.pdf",
+      "size": "392.1 KB",
+      "sizeBytes": 401537,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย Homework9"
+    },
+    {
+      "filename": "เฉลย homework10.pdf",
+      "path": "raw_slides/เฉลย homework10.pdf",
+      "size": "1.4 MB",
+      "sizeBytes": 1483797,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลย homework10"
+    },
+    {
+      "filename": "เฉลยHomework4.pdf",
+      "path": "raw_slides/เฉลยHomework4.pdf",
+      "size": "705.6 KB",
+      "sizeBytes": 722541,
+      "extension": ".pdf",
+      "category": "Homework & Solutions",
+      "title": "เฉลยHomework4"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# Logs and dependencies
+node_modules/
+.venv/
+dist/
+dist-ssr/
+*.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Large raw textbook binaries (keep index.json and markdown notes)
+raw_slides/*.pdf
