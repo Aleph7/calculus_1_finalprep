@@ -10,7 +10,7 @@ interface MathViewProps {
 
 /**
  * High-performance, crash-proof KaTeX math renderer.
- * Safely renders LaTeX mathematical expressions without throwing React errors.
+ * Stark monochrome styling with crisp typography.
  */
 export const MathView: React.FC<MathViewProps> = ({
   math,
@@ -31,14 +31,14 @@ export const MathView: React.FC<MathViewProps> = ({
       });
     } catch (err) {
       console.warn('KaTeX render error:', err);
-      return `<span class="text-rose-400 font-mono text-sm">${content}</span>`;
+      return `<span class="text-rose-400 font-mono text-xs">${content}</span>`;
     }
   }, [content, block]);
 
   if (block) {
     return (
       <div
-        className={`my-2 overflow-x-auto py-1 text-cyan-200 ${className}`}
+        className={`my-2 overflow-x-auto py-1 text-zinc-100 font-medium ${className}`}
         dangerouslySetInnerHTML={{ __html: renderedHtml }}
       />
     );
@@ -46,7 +46,7 @@ export const MathView: React.FC<MathViewProps> = ({
 
   return (
     <span
-      className={`inline-block px-0.5 text-cyan-100 ${className}`}
+      className={`inline-block px-0.5 text-zinc-100 ${className}`}
       dangerouslySetInnerHTML={{ __html: renderedHtml }}
     />
   );
@@ -56,7 +56,7 @@ export const MathView: React.FC<MathViewProps> = ({
  * Text renderer that automatically detects and renders LaTeX delimiters:
  * - $$math$$ or \[math\] -> Block math
  * - $math$ or \(math\) -> Inline math
- * - Normal text rendered normally
+ * - Normal Thai & alphanumeric text rendered seamlessly
  */
 export const FormattedMathText: React.FC<{
   text: string;
@@ -65,7 +65,6 @@ export const FormattedMathText: React.FC<{
   const parts = useMemo(() => {
     if (!text) return [];
 
-    // Regex to capture $$...$$, \[...\], $...$, \(...\)
     const regex = /(\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^\$\n]+?\$|\\\([\s\S]*?\\\))/g;
     const tokens: Array<{ type: 'text' | 'inline-math' | 'block-math'; content: string }> = [];
     let lastIdx = 0;
@@ -125,9 +124,8 @@ export const FormattedMathText: React.FC<{
         if (p.type === 'inline-math') {
           return <MathView key={i} math={p.content} block={false} />;
         }
-        // Support line breaks in plain text
         return (
-          <span key={i} className="whitespace-pre-wrap leading-relaxed">
+          <span key={i} className="whitespace-pre-wrap leading-relaxed text-zinc-300">
             {p.content}
           </span>
         );

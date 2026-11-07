@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, GraduationCap, Calculator, FileText, CheckCircle2, Award, Sparkles } from 'lucide-react';
+import { BookOpen, CheckCircle2, FileText, Sparkles, Award, Search, Zap } from 'lucide-react';
 
 export type TabType = 'mock-exam' | 'practice' | 'formula-vault' | 'slides-index';
 
@@ -8,6 +8,7 @@ interface NavbarProps {
   setActiveTab: (tab: TabType) => void;
   earnedPoints: number;
   totalPoints: number;
+  onOpenFormulaDrawer: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,111 +16,125 @@ export const Navbar: React.FC<NavbarProps> = ({
   setActiveTab,
   earnedPoints,
   totalPoints,
+  onOpenFormulaDrawer,
 }) => {
   const percentage = Math.round((earnedPoints / totalPoints) * 100);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-800 bg-slate-950/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-        {/* Brand & Course Title */}
+        {/* Brand & Course Details */}
         <div className="flex items-center space-x-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-lg shadow-cyan-900/40">
-            <GraduationCap className="h-6 w-6 text-white" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-700 text-zinc-100 shadow-sm">
+            <span className="font-serif text-lg font-bold">∫</span>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-base font-extrabold tracking-tight text-white sm:text-lg">
-                CALCULUS 1 <span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">FINAL MASTERY</span>
+              <span className="text-sm sm:text-base font-extrabold tracking-tight text-zinc-100">
+                แคลคูลัส 1 <span className="text-zinc-400 font-medium text-xs sm:text-sm">เตรียมสอบปลายภาค</span>
               </span>
-              <span className="rounded-full border border-cyan-500/30 bg-cyan-950/60 px-2 py-0.5 text-xs font-semibold text-cyan-300">
-                50 PTS
+              <span className="rounded-md border border-zinc-700 bg-zinc-900 px-1.5 py-0.5 font-mono text-[11px] font-bold text-zinc-200">
+                50 คะแนน
               </span>
             </div>
-            <p className="text-xs text-slate-400">
-              KMITL Faculty of Science / IT • 12 Questions Final Blueprint
+            <p className="text-[11px] text-zinc-500">
+              คณะวิทยาศาสตร์ / ไอที สจล. (KMITL 06016301) • ข้อสอบ 12 ข้อมาตรฐาน
             </p>
           </div>
         </div>
 
-        {/* Live Score Tracker Pill */}
-        <div className="hidden md:flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-900/80 px-3.5 py-1.5 shadow-inner">
-          <div className="flex items-center gap-1.5 text-xs font-medium text-slate-300">
-            <Award className="h-4 w-4 text-amber-400" />
-            <span>Score:</span>
+        {/* Live Score Counter */}
+        <div className="hidden lg:flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/70 px-3 py-1.5 shadow-inner">
+          <div className="flex items-center gap-1.5 text-xs text-zinc-400">
+            <Award className="h-3.5 w-3.5 text-zinc-400" />
+            <span>คะแนนสะสม:</span>
           </div>
-          <div className="flex items-baseline gap-1">
-            <span className="font-mono text-base font-bold text-cyan-400">{earnedPoints}</span>
-            <span className="text-xs text-slate-500">/ {totalPoints} pts</span>
+          <div className="flex items-baseline gap-1 font-mono">
+            <span className="text-base font-bold text-zinc-100">{earnedPoints}</span>
+            <span className="text-xs text-zinc-500">/ {totalPoints}</span>
           </div>
-          <div className="h-4 w-px bg-slate-800" />
-          <div className="flex items-center gap-1.5 text-xs">
-            <span className={`font-semibold ${percentage >= 80 ? 'text-emerald-400' : percentage >= 50 ? 'text-cyan-400' : 'text-amber-400'}`}>
-              {percentage}%
-            </span>
-          </div>
+          <div className="h-3.5 w-px bg-zinc-800" />
+          <span className={`text-xs font-mono font-bold ${percentage >= 80 ? 'text-zinc-100' : 'text-zinc-400'}`}>
+            {percentage}%
+          </span>
         </div>
 
-        {/* Navigation Tabs */}
-        <nav className="flex items-center space-x-1 sm:space-x-2">
-          <button
-            onClick={() => setActiveTab('mock-exam')}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'mock-exam'
-                ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/40 shadow-sm shadow-cyan-950'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
-            }`}
-          >
-            <CheckCircle2 className="h-4 w-4" />
-            <span>Mock Exam</span>
-            <span className="hidden sm:inline-block rounded-full bg-cyan-500/20 px-1.5 py-0.2 text-[10px] text-cyan-300">
-              12 Qs
-            </span>
-          </button>
+        {/* Navigation Tabs & Quick Action */}
+        <div className="flex items-center space-x-1 sm:space-x-2">
+          <nav className="flex items-center space-x-1">
+            <button
+              onClick={() => setActiveTab('mock-exam')}
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                activeTab === 'mock-exam'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200'
+              }`}
+              title="กดคีย์ 1 เพื่อเปิดข้อสอบจำลอง"
+            >
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              <span>ข้อสอบจำลอง</span>
+              <span className={`rounded px-1 text-[10px] ${activeTab === 'mock-exam' ? 'bg-zinc-300 text-zinc-950 font-mono' : 'bg-zinc-800 text-zinc-400 font-mono'}`}>
+                12 ข้อ
+              </span>
+            </button>
 
-          <button
-            onClick={() => setActiveTab('practice')}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'practice'
-                ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/40 shadow-sm shadow-indigo-950'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
-            }`}
-          >
-            <Sparkles className="h-4 w-4" />
-            <span>Practice Drills</span>
-            <span className="hidden sm:inline-block rounded-full bg-indigo-500/20 px-1.5 py-0.2 text-[10px] text-indigo-300">
-              24
-            </span>
-          </button>
+            <button
+              onClick={() => setActiveTab('practice')}
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                activeTab === 'practice'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200'
+              }`}
+              title="กดคีย์ 2 เพื่อเปิดคลังแบบฝึกหัด"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">แบบฝึกหัด</span>
+              <span className="sm:hidden">ฝึกหัด</span>
+              <span className={`rounded px-1 text-[10px] ${activeTab === 'practice' ? 'bg-zinc-300 text-zinc-950 font-mono' : 'bg-zinc-800 text-zinc-400 font-mono'}`}>
+                24
+              </span>
+            </button>
 
-          <button
-            onClick={() => setActiveTab('formula-vault')}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'formula-vault'
-                ? 'bg-amber-500/15 text-amber-400 border border-amber-500/40 shadow-sm shadow-amber-950'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
-            }`}
-          >
-            <BookOpen className="h-4 w-4" />
-            <span className="hidden sm:inline">Formula Vault</span>
-            <span className="sm:hidden">Vault</span>
-          </button>
+            <button
+              onClick={() => setActiveTab('formula-vault')}
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                activeTab === 'formula-vault'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200'
+              }`}
+              title="กดคีย์ 3 เพื่อเปิดคลังสูตร"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">คลังสูตร & จุดดัก</span>
+              <span className="sm:hidden">คลังสูตร</span>
+            </button>
 
+            <button
+              onClick={() => setActiveTab('slides-index')}
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                activeTab === 'slides-index'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200'
+              }`}
+              title="กดคีย์ 4 เพื่อเปิดสไลด์และเอกสารเรียน"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">สไลด์ & เลกเชอร์</span>
+              <span className="sm:hidden">สไลด์</span>
+            </button>
+          </nav>
+
+          {/* Quick Formula Search Trigger Button */}
           <button
-            onClick={() => setActiveTab('slides-index')}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold transition-all ${
-              activeTab === 'slides-index'
-                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 shadow-sm shadow-emerald-950'
-                : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
-            }`}
+            onClick={onOpenFormulaDrawer}
+            className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-2.5 py-1.5 text-xs font-semibold text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition-colors ml-1"
+            title="ค้นหาสูตรทันที (คีย์ลัด: กด /)"
           >
-            <FileText className="h-4 w-4" />
-            <span className="hidden sm:inline">Slides & Notes</span>
-            <span className="sm:hidden">Slides</span>
-            <span className="hidden md:inline-block rounded-full bg-emerald-500/20 px-1.5 py-0.2 text-[10px] text-emerald-300">
-              37
-            </span>
+            <Search className="h-3.5 w-3.5 text-zinc-400" />
+            <span className="hidden md:inline">ค้นหาสูตร</span>
+            <kbd className="text-[10px]"> / </kbd>
           </button>
-        </nav>
+        </div>
       </div>
     </header>
   );

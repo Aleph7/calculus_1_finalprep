@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { Search, BookOpen, AlertOctagon, HelpCircle, Layers, Check, Copy } from 'lucide-react';
+import { Search, BookOpen, AlertOctagon, Layers, Check, Copy, ShieldAlert } from 'lucide-react';
 import { formulaSheet, FormulaItem } from '../data/calculusData';
-import { MathView, FormattedMathText } from './MathView';
+import { MathView } from './MathView';
 
 export const FormulaVault: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -9,13 +9,13 @@ export const FormulaVault: React.FC = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const categories = [
-    { id: 'all', label: 'All Formulas (19)' },
-    { id: 'standard_integrals', label: 'Standard Integration Table (Allowed in Exam)' },
-    { id: 'reduction', label: 'Reduction Formulas' },
-    { id: 'trig_sub', label: 'Trig Sub & Reference Triangles' },
-    { id: 'series_tests', label: 'Series Convergence Tests' },
-    { id: 'maclaurin_taylor', label: 'Maclaurin & Taylor Expansions' },
-    { id: 'pitfalls', label: '⚠️ Common Traps & Pitfalls' },
+    { id: 'all', label: 'สูตรทั้งหมด (19 รายการ)' },
+    { id: 'standard_integrals', label: 'ตารางสูตรอินทิเกรตมาตรฐาน (มีให้ในห้องสอบ)' },
+    { id: 'reduction', label: 'สูตรลดทอนกำลัง (Reduction Formulas)' },
+    { id: 'trig_sub', label: 'การแทนค่าตรีโกณ & สามเหลี่ยมอ้างอิง' },
+    { id: 'series_tests', label: 'การทดสอบการลู่เข้าของอนุกรม' },
+    { id: 'maclaurin_taylor', label: 'อนุกรมแมคลอริน & เทย์เลอร์' },
+    { id: 'pitfalls', label: '⚠️ จุดดัก & ข้อผิดพลาดยอดฮิต' },
   ];
 
   const filteredFormulas = useMemo(() => {
@@ -26,6 +26,7 @@ export const FormulaVault: React.FC = () => {
 
       const matchesSearch =
         item.name.toLowerCase().includes(q) ||
+        item.nameEn.toLowerCase().includes(q) ||
         item.description.toLowerCase().includes(q) ||
         item.latex.toLowerCase().includes(q) ||
         (item.notes && item.notes.toLowerCase().includes(q));
@@ -37,32 +38,32 @@ export const FormulaVault: React.FC = () => {
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    setTimeout(() => setCopiedId(null), 1500);
   };
 
   return (
     <div className="space-y-6">
       {/* Search & Category Filter Controls */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 shadow-lg">
+      <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Search Input */}
           <div className="relative flex-1">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search formulas, theorems (e.g. secant, ratio, taylor, arctan, trap)..."
-              className="w-full rounded-xl border border-slate-700 bg-slate-950/80 py-2.5 pl-10 pr-4 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+              placeholder="ค้นหาสูตร ทฤษฎีบท หรือนิพจน์ (เช่น secant, แทนค่า, อัตราส่วน, arctan, จุดดัก)..."
+              className="w-full rounded-xl border border-zinc-800 bg-zinc-900/90 py-2.5 pl-10 pr-4 text-xs sm:text-sm text-zinc-100 placeholder-zinc-500 outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
             />
           </div>
 
-          <div className="text-xs text-slate-400">
-            Showing <strong className="text-cyan-400 font-mono">{filteredFormulas.length}</strong> formula reference{filteredFormulas.length === 1 ? '' : 's'}
+          <div className="text-xs text-zinc-400 font-mono">
+            แสดง <strong className="text-zinc-100">{filteredFormulas.length}</strong> รายการสูตร
           </div>
         </div>
 
-        {/* Category Pills */}
+        {/* Category Filter Buttons */}
         <div className="mt-4 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
@@ -70,10 +71,8 @@ export const FormulaVault: React.FC = () => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
                 selectedCategory === cat.id
-                  ? cat.id === 'pitfalls'
-                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/50'
-                    : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-sm'
-                  : 'bg-slate-800/80 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                  ? 'bg-zinc-100 text-zinc-950 font-bold shadow-sm'
+                  : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200 border border-zinc-800'
               }`}
             >
               {cat.label}
@@ -83,14 +82,14 @@ export const FormulaVault: React.FC = () => {
       </div>
 
       {/* Official Allowed Exam Notice Banner */}
-      <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-4 text-xs text-cyan-200 flex items-start gap-3">
-        <BookOpen className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-xs text-zinc-300 flex items-start gap-3">
+        <BookOpen className="h-4 w-4 text-zinc-400 flex-shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <p className="font-bold text-white">
-            Official Exam Information Sheet Guidelines (KMITL Calculus 1)
+          <p className="font-bold text-zinc-100">
+            ระเบียบเอกสารประกอบการสอบวิชาแคลคูลัส 1 (KMITL 06016301)
           </p>
-          <p className="text-slate-300 leading-relaxed">
-            The standard integration table below (formulas 1 through 10) and reduction formulas are formally provided on the exam paper. Students are expected to memorize all series convergence tests (especially Geometric and Ratio tests) as well as the standard Maclaurin series expansions.
+          <p className="text-zinc-400 leading-relaxed">
+            ตารางสูตรอินทิเกรตมาตรฐาน (ข้อ 1 ถึง 10) และสูตรลดทอนกำลัง จะมีพิมพ์มาให้ในใบข้อสอบปลายภาค ส่วนการทดสอบการลู่เข้าของอนุกรม (โดยเฉพาะอนุกรมเรขาคณิตและ Ratio Test) และอนุกรมแมคลอรินมาตรฐาน นักศึกษาต้องจำเข้าห้องสอบด้วยตนเอง
           </p>
         </div>
       </div>
@@ -105,8 +104,8 @@ export const FormulaVault: React.FC = () => {
               key={item.id}
               className={`flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all ${
                 isPitfall
-                  ? 'border-rose-500/40 bg-gradient-to-br from-slate-900 via-slate-950 to-rose-950/30'
-                  : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                  ? 'border-zinc-700 bg-zinc-900/80'
+                  : 'border-zinc-800/80 bg-zinc-900/40 hover:border-zinc-700'
               }`}
             >
               <div>
@@ -114,50 +113,53 @@ export const FormulaVault: React.FC = () => {
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <div className="flex items-center gap-2">
                     {isPitfall ? (
-                      <AlertOctagon className="h-4 w-4 text-rose-400 flex-shrink-0" />
+                      <AlertOctagon className="h-4 w-4 text-zinc-300 flex-shrink-0" />
                     ) : (
-                      <Layers className="h-4 w-4 text-cyan-400 flex-shrink-0" />
+                      <Layers className="h-4 w-4 text-zinc-500 flex-shrink-0" />
                     )}
-                    <h3 className={`text-sm font-bold ${isPitfall ? 'text-rose-300' : 'text-white'}`}>
-                      {item.name}
-                    </h3>
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-zinc-100">
+                        {item.name}
+                      </h3>
+                      <span className="text-[10px] text-zinc-500 font-mono block">
+                        {item.nameEn}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Copy LaTeX button */}
+                  {/* Copy Button */}
                   <button
                     onClick={() => copyToClipboard(item.latex, item.id)}
-                    className="rounded p-1 text-slate-500 hover:text-slate-300 transition-colors"
-                    title="Copy LaTeX"
+                    className="rounded p-1 text-zinc-500 hover:text-zinc-300 transition-colors"
+                    title="คัดลอก LaTeX"
                   >
                     {copiedId === item.id ? (
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                      <Check className="h-3.5 w-3.5 text-zinc-100" />
                     ) : (
                       <Copy className="h-3.5 w-3.5" />
                     )}
                   </button>
                 </div>
 
-                {/* Mathematical Formula Render */}
-                <div className={`my-3 overflow-x-auto rounded-lg p-3 text-center ${
-                  isPitfall ? 'bg-rose-950/40 border border-rose-800/40' : 'bg-slate-950 border border-slate-800/80'
-                }`}>
+                {/* Mathematical Formula Render Box */}
+                <div className="my-3 overflow-x-auto rounded-lg bg-zinc-950 p-3 text-center border border-zinc-800">
                   <MathView math={item.latex} block />
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-zinc-300 leading-relaxed">
                   {item.description}
                 </p>
 
-                {/* Notes or Conditions if available */}
+                {/* Notes or Conditions */}
                 {item.notes && (
-                  <p className="mt-2 text-[11px] text-amber-300/80 bg-amber-950/30 px-2 py-1 rounded border border-amber-900/40">
-                    💡 <strong>Note:</strong> {item.notes}
+                  <p className="mt-2 text-[11px] text-zinc-400 bg-zinc-950 px-2 py-1 rounded border border-zinc-800">
+                    💡 <strong>หมายเหตุสำคัญ:</strong> {item.notes}
                   </p>
                 )}
                 {item.conditions && (
-                  <p className="mt-2 text-[11px] text-slate-400 font-mono">
-                    Condition: {item.conditions}
+                  <p className="mt-2 text-[11px] text-zinc-500 font-mono">
+                    เงื่อนไข: {item.conditions}
                   </p>
                 )}
               </div>
@@ -167,8 +169,8 @@ export const FormulaVault: React.FC = () => {
       </div>
 
       {filteredFormulas.length === 0 && (
-        <div className="rounded-xl border border-dashed border-slate-800 p-8 text-center text-slate-500 text-sm">
-          No formulas matched your search query "{searchQuery}". Try searching for "ratio", "secant", or "parts".
+        <div className="rounded-xl border border-dashed border-zinc-800 p-8 text-center text-zinc-500 text-xs sm:text-sm">
+          ไม่พบสูตรที่ตรงกับคำค้นหา "{searchQuery}" ลองค้นหาด้วยคำว่า "แทนค่า", "อัตราส่วน" หรือ "secant"
         </div>
       )}
     </div>

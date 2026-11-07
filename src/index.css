@@ -6,46 +6,74 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: #020617; /* Slate 950 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #09090b; /* Zinc 950 / Pure Dark */
+  color: #fafafa;
 }
 
-code, pre, .font-mono {
+code, pre, .font-mono, kbd {
   font-family: 'Fira Code', 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
 }
 
-/* Custom scrollbars */
+/* Linear / Vercel style keyboard keycap (kbd) */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #d4d4d8;
+  background-color: #18181b;
+  border: 1px solid #3f3f46;
+  border-radius: 0.35rem;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Minimalist monochrome scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #27272a;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3f3f46;
 }
 
-/* KaTeX custom sizing and contrast enhancements */
+/* KaTeX custom sizing and stark monochrome contrast */
 .katex {
-  font-size: 1.08em;
+  font-size: 1.05em;
+  color: #fafafa;
   text-rendering: optimizeLegibility;
 }
 
 .katex-display {
-  margin: 0.85em 0 !important;
+  margin: 0.75em 0 !important;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.35rem 0.25rem;
+  padding: 0.3rem 0.2rem;
 }
 
 .katex-display::-webkit-scrollbar {
-  height: 4px;
+  height: 3px;
+}
+
+/* Subtle fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.18s ease-out forwards;
 }
