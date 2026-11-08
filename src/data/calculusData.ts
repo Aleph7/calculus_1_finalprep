@@ -343,6 +343,105 @@ export const mockExamQuestions: ExamQuestion[] = [
   // --- ข้อที่ 1 (4 คะแนน) ---
   {
     id: 1,
+    topic: 'ปฏิยานุพันธ์และปัญหาค่าเริ่มต้น (Initial Value Problems)',
+    topicEn: 'Antiderivatives & Initial Value Problems (IVP)',
+    category: 'Antiderivatives & IVP',
+    points: 4,
+    difficulty: 'มาตรฐานข้อสอบ',
+    problemStatement: 'กำหนดให้อนุพันธ์อันดับสองของฟังก์ชันคือ $f\'\'(x) = 12x^2 + 6x - 4$ โดยมีเงื่อนไขเริ่มต้น (Initial Conditions) คือ $f\'(1) = 5$ และ $f(1) = 2$\n\nจงหาฟังก์ชัน $f(x)$ โดยแสดงขั้นตอนการอินทิเกรตเพื่อแก้หาค่าคงที่ $+ C$ อย่างละเอียด (ห้ามใช้เครื่องคิดเลข)',
+    hints: [
+      'อินทิเกรต $f\'\'(x)$ หนึ่งครั้งเพื่อหา $f\'(x) + C_1$',
+      'แทนเงื่อนไขเริ่มต้น $f\'(1) = 5$ เพื่อแก้หาค่าคงที่ $C_1$',
+      'อินทิเกรต $f\'(x)$ อีกหนึ่งครั้งเพื่อหา $f(x) + C_2$',
+      'แทนเงื่อนไขเริ่มต้น $f(1) = 2$ เพื่อแก้หาค่าคงที่ $C_2$',
+    ],
+    speedHack: {
+      title: '⚡ ทริคลดเวลา: Sequential Constant Determination',
+      description: 'แก้หาค่าคงที่ $C_1$ ทันทีที่อินทิเกรตขั้นแรกเสร็จ อย่าค้าง $C_1$ ไปอินทิเกรตต่อเป็น $C_1 x + C_2$ โดยที่ยังไม่รู้ค่า',
+      steps: [
+        'ขั้นตอนที่ 1: อินทิเกรต $12x^2 + 6x - 4$ ได้ $4x^3 + 3x^2 - 4x + C_1$',
+        'ขั้นตอนที่ 2: แทน $x=1$: $4(1) + 3(1) - 4(1) + C_1 = 3 + C_1 = 5 \\implies C_1 = 2$',
+        'ขั้นตอนที่ 3: อินทิเกรต $4x^3 + 3x^2 - 4x + 2$ ได้ $x^4 + x^3 - 2x^2 + 2x + C_2$',
+        'ขั้นตอนที่ 4: แทน $x=1$: $1 + 1 - 2 + 2 + C_2 = 2 + C_2 = 2 \\implies C_2 = 0$',
+        'ขั้นตอนที่ 5: สรุปฟังก์ชัน $f(x) = x^4 + x^3 - 2x^2 + 2x$ จบใน 1 นาที!',
+      ],
+      timeSaved: 'ประหยัดเวลา: 2 นาที และกำจัดความสับสนเรื่องตัวแปรค่าคงที่',
+    },
+    slideReference: {
+      slideTitle: '6.3 Differential Equations & Initial Value Problems (IVP)',
+      lectureNumber: 10,
+      pageNumber: 22,
+      imagePath: './slides_img/q1_antiderivatives_ivp.png',
+      professorNote: 'ตรงกับสไลด์ Week 10 หน้า 22 (Example 2): การแก้ปัญหาค่าเริ่มต้น (Initial Value Problem) ต้องอินทิเกรตและแทนเงื่อนไขเริ่มต้นเพื่อแก้หาค่า C ทีละลำดับ ห้ามรวมค่าคงที่เข้าด้วยกัน',
+      shortcutTip: 'ทริคลัด: เมื่อให้ f\'(1) และ f(1) มา ให้แทน x=1 ในรูปปฏิยานุพันธ์ ผลรวมสัมประสิทธิ์จะคิดเลขในใจได้ทันที',
+    },
+    stepByStepSolution: [
+      '**ขั้นตอนที่ 1: อินทิเกรตครั้งที่ 1 เพื่อหา $f\'(x)$**\nจาก $f\'\'(x) = 12x^2 + 6x - 4$ หาปฏิยานุพันธ์เทียบกับ $x$:\n$$f\'(x) = \\int (12x^2 + 6x - 4) \\, dx = 12\\left(\\frac{x^3}{3}\\right) + 6\\left(\\frac{x^2}{2}\\right) - 4x + C_1$$\n$$f\'(x) = 4x^3 + 3x^2 - 4x + C_1$$',
+      '**ขั้นตอนที่ 2: หาค่าคงที่ $C_1$ จากเงื่อนไขเริ่มต้น $f\'(1) = 5$**\nแทนค่า $x = 1$ ลงในสมการของ $f\'(x)$:\n$$f\'(1) = 4(1)^3 + 3(1)^2 - 4(1) + C_1 = 5$$\n$$4 + 3 - 4 + C_1 = 5 \\implies 3 + C_1 = 5 \\implies C_1 = 2$$\nดังนั้น อนุพันธ์อันดับหนึ่งที่สมบูรณ์คือ:\n$$f\'(x) = 4x^3 + 3x^2 - 4x + 2$$',
+      '**ขั้นตอนที่ 3: อินทิเกรตครั้งที่ 2 เพื่อหา $f(x)$**\nหาปฏิยานุพันธ์ของ $f\'(x)$ เทียบกับ $x$:\n$$f(x) = \\int (4x^3 + 3x^2 - 4x + 2) \\, dx = 4\\left(\\frac{x^4}{4}\\right) + 3\\left(\\frac{x^3}{3}\\right) - 4\\left(\\frac{x^2}{2}\\right) + 2x + C_2$$\n$$f(x) = x^4 + x^3 - 2x^2 + 2x + C_2$$',
+      '**ขั้นตอนที่ 4: หาค่าคงที่ $C_2$ จากเงื่อนไขเริ่มต้น $f(1) = 2$**\nแทนค่า $x = 1$ ลงในสมการของ $f(x)$:\n$$f(1) = (1)^4 + (1)^3 - 2(1)^2 + 2(1) + C_2 = 2$$\n$$1 + 1 - 2 + 2 + C_2 = 2 \\implies 2 + C_2 = 2 \\implies C_2 = 0$$\nสรุปฟังก์ชัน $f(x)$ คือ:\n$$f(x) = x^4 + x^3 - 2x^2 + 2x$$',
+    ],
+    rubric: [
+      { criteria: 'อินทิเกรต $f\'\'(x)$ ได้ $f\'(x) = 4x^3 + 3x^2 - 4x + C_1$ ถูกต้อง', points: 1 },
+      { criteria: 'แทนเงื่อนไข $f\'(1) = 5$ และคำนวณหาค่าคงที่ $C_1 = 2$ ได้ถูกต้อง', points: 1 },
+      { criteria: 'อินทิเกรต $f\'(x)$ ได้ $f(x) = x^4 + x^3 - 2x^2 + 2x + C_2$ ถูกต้อง', points: 1 },
+      { criteria: 'แทนเงื่อนไข $f(1) = 2$ แก้หา $C_2 = 0$ และสรุปฟังก์ชัน $f(x) = x^4 + x^3 - 2x^2 + 2x$ ได้สมบูรณ์', points: 1 },
+    ],
+    finalAnswer: 'f(x) = x^4 + x^3 - 2x^2 + 2x',
+  },
+
+  // --- ข้อที่ 2 (4 คะแนน) ---
+  {
+    id: 2,
+    topic: 'ทฤษฎีบทหลักมูลแคลคูลัสและสมบัติความสมมาตร',
+    topicEn: 'Fundamental Theorem of Calculus (Leibniz Rule) & Symmetry',
+    category: 'FTC & Leibniz',
+    points: 4,
+    difficulty: 'มาตรฐานข้อสอบ',
+    problemStatement: '(ก) จงหาค่าของ $g\'(1)$ เมื่อกำหนดฟังก์ชัน $g(x)$ ในรูปอินทิกรัล:\n$$g(x) = \\int_{1}^{x^3} \\frac{\\sqrt{t^2 + 3}}{t + 1} \\, dt$$\n\n(ข) จงหาค่าที่แม่นยำของอินทิกรัลจำกัดเขตต่อไปนี้ โดยใช้สมบัติฟังก์ชันคู่หรือฟังก์ชันคี่ (Symmetry Properties):\n$$\\int_{-2}^{2} \\left( \\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1} + 3x^2 \\right) \\, dx$$',
+    hints: [
+      'ข้อ (ก): ใช้ทฤษฎีบทหลักมูลแคลคูลัสส่วนที่ 1 ร่วมกับกฎลูกโซ่ (Leibniz Rule): $\\frac{d}{dx}\\int_a^{u(x)} f(t)dt = f(u(x)) \\cdot u\'(x)$',
+      'อย่าลืมคูณด้วยอนุพันธ์ของขอบเขตบน: $\\frac{d}{dx}(x^3) = 3x^2$',
+      'ข้อ (ข): สังเกตช่วงการอินทิเกรตเป็นช่วงสมมาตรรอบจุดกำเนิด $[-2, 2]$',
+      'ตรวจสอบความเป็นฟังก์ชันคี่: ถ้า $f(-x) = -f(x)$ อินทิกรัลบนช่วง $[-a, a]$ จะมีค่าเท่ากับ 0 ทันที',
+    ],
+    speedHack: {
+      title: '⚡ ทริคลดเวลา: Leibniz Chain Rule & Odd-Function Elimination',
+      description: 'ตัดฟังก์ชันคี่บนช่วงสมมาตรทิ้งเป็น 0 ใน 1 วินาที และใช้กฎของไลบ์นิซคูณ $u\'(x)$ โดยไม่ต้องอินทิเกรตจริง',
+      steps: [
+        'ขั้นตอนที่ 1 (ก): กฎไลบ์นิซ: $g\'(x) = \\frac{\\sqrt{(x^3)^2+3}}{x^3+1} \\cdot (3x^2)$',
+        'ขั้นตอนที่ 2 (ก): แทน $x=1$: $g\'(1) = \\frac{\\sqrt{1+3}}{1+1} \\cdot 3(1)^2 = \\frac{2}{2} \\cdot 3 = 3$ เสร็จสิ้นใน 20 วินาที!',
+        'ขั้นตอนที่ 3 (ข): พจน์ $\\frac{x^7 - 3x^5 + \\sin x}{x^4+1}$ เป็นฟังก์ชันคี่แท้จริง เพราะเศษคี่ ส่วนคู่ $\\implies$ อินทิเกรตบน $[-2, 2]$ ได้ 0 ทันที!',
+        'ขั้นตอนที่ 4 (ข): เหลือเพียง $\\int_{-2}^2 3x^2 dx = [x^3]_{-2}^2 = 8 - (-8) = 16$ จบใน 2 บรรทัด',
+      ],
+      timeSaved: 'ประหยัดเวลา: 4 นาที (ไม่ต้องนั่งจัดรูปอินทิเกรตฟังก์ชันคี่ที่ซับซ้อน)',
+    },
+    slideReference: {
+      slideTitle: '6.4 Second Fundamental Theorem of Calculus & Leibniz Rule',
+      lectureNumber: 10,
+      pageNumber: 23,
+      imagePath: './slides_img/q2_ftc_leibniz.png',
+      professorNote: 'ตรงกับสไลด์ Week 10 หน้า 23 และ Week 9 หน้า 23: กฎของไลบ์นิซ (Leibniz Rule) ต้องคูณด้วยอนุพันธ์ของขอบเขตบน u\'(x) เสมอ และถ้าเจอช่วงสมมาตร [-a, a] ให้เช็กฟังก์ชันคี่เพื่อตัดเป็น 0',
+      shortcutTip: 'ทริคลัด: ฟังก์ชันคี่บนช่วง [-a, a] อินทิเกรตได้ 0 เสมอ ไม่ต้องเสียเวลาหาปฏิยานุพันธ์ ส่วนฟังก์ชันคู่ให้คิดแค่ 2 เท่าของช่วง [0, a]',
+    },
+    stepByStepSolution: [
+      '**ขั้นตอนที่ 1: ข้อ (ก) ใช้ทฤษฎีบทหลักมูลของแคลคูลัสและกฎลูกโซ่ (Leibniz Rule)**\nตามทฤษฎีบทหลักมูลแคลคูลัส (FTC Part 1) ร่วมกับ Chain Rule:\n$$\\frac{d}{dx} \\left[ \\int_{a}^{u(x)} f(t) \\, dt \\right] = f(u(x)) \\cdot u\'(x)$$\nในที่นี้ $f(t) = \\frac{\\sqrt{t^2 + 3}}{t + 1}$, $u(x) = x^3$, และ $u\'(x) = 3x^2$\nดังนั้น:\n$$g\'(x) = \\frac{\\sqrt{(x^3)^2 + 3}}{x^3 + 1} \\cdot \\frac{d}{dx}(x^3) = \\frac{\\sqrt{x^6 + 3}}{x^3 + 1} \\cdot 3x^2$$',
+      '**ขั้นตอนที่ 2: ข้อ (ก) แทนค่า $x = 1$ เพื่อหา $g\'(1)$**\n$$g\'(1) = \\frac{\\sqrt{1^6 + 3}}{1^3 + 1} \\cdot 3(1)^2 = \\frac{\\sqrt{4}}{2} \\cdot 3 = \\frac{2}{2} \\cdot 3 = 3$$',
+      '**ขั้นตอนที่ 3: ข้อ (ข) วิเคราะห์สมมาตรของฟังก์ชันบนช่วง $[-2, 2]$**\nแยกอินทิกรัลออกเป็น 2 ส่วน:\n$$\\int_{-2}^{2} \\left( \\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1} + 3x^2 \\right) dx = \\int_{-2}^{2} \\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1} \\, dx + \\int_{-2}^{2} 3x^2 \\, dx$$\nพิจารณาฟังก์ชันแรก: ให้ $h(x) = \\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1}$\n$$h(-x) = \\frac{(-x)^7 - 3(-x)^5 + \\sin(-x)}{(-x)^4 + 1} = \\frac{-x^7 + 3x^5 - \\sin(x)}{x^4 + 1} = -\\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1} = -h(x)$$\nเนื่องจาก $h(-x) = -h(x)$ จึงเป็น **ฟังก์ชันคี่ (Odd Function)**\nโดยสมบัติการอินทิเกรตบนช่วงสมมาตร $[-a, a]$:\n$$\\int_{-2}^{2} \\frac{x^7 - 3x^5 + \\sin(x)}{x^4 + 1} \\, dx = 0$$',
+      '**ขั้นตอนที่ 4: ข้อ (ข) คำนวณพจน์ฟังก์ชันคู่ที่เหลือ**\nฟังก์ชัน $3x^2$ เป็นฟังก์ชันคู่ (Even Function):\n$$\\int_{-2}^{2} 3x^2 \\, dx = 2 \\int_{0}^{2} 3x^2 \\, dx = 2 \\left[ x^3 \\right]_{0}^{2} = 2(2^3 - 0) = 2(8) = 16$$\n(หรือคำนวณโดยตรง: $\\left[ x^3 \\right]_{-2}^{2} = 2^3 - (-2)^3 = 8 - (-8) = 16$)\nรวมผลลัพธ์ทั้งสองข้อ:\n(ก) $g\'(1) = 3$\n(ข) อินทิกรัลมีค่าเท่ากับ $16$',
+    ],
+    rubric: [
+      { criteria: 'ประยุกต์ใช้กฎของไลบ์นิซและกฎลูกโซ่หา $g\'(x) = \\frac{\\sqrt{x^6+3}}{x^3+1} \\cdot 3x^2$ ได้ถูกต้อง', points: 1 },
+      { criteria: 'แทนค่า $x = 1$ คำนวณได้ $g\'(1) = 3$ แม่นยำ', points: 1 },
+      { criteria: 'พิสูจน์หรือระบุสมบัติฟังก์ชันคี่ของ $\\frac{x^7-3x^5+\\sin x}{x^4+1}$ และสรุปว่าอินทิกรัลบนช่วง $[-2, 2]$ ได้ 0', points: 1 },
+      { criteria: 'อินทิเกรตพจน์ $3x^2$ บน $[-2, 2]$ ได้คำตอบที่ถูกต้องแม่นยำคือ 16', points: 1 },
+    ],
+    finalAnswer: '(ก) \\ g\'(1) = 3, \\quad (ข) \\ 16',
+  },
+
+  // --- ข้อที่ 3 (4 คะแนน) ---
+  {
+    id: 3,
     topic: 'การอินทิเกรตโดยการเปลี่ยนตัวแปรและการเปลี่ยนขอบเขต',
     topicEn: 'Integration by Substitution with Boundary Transformation',
     category: 'Substitution',
@@ -369,7 +468,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '7.1 Integration by Substitution: Definite Integrals & Boundary Shifts',
       lectureNumber: 11,
       pageNumber: 10,
-      imagePath: './slides_img/q1_substitution.png',
+      imagePath: './slides_img/q3_substitution.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 10: อาจารย์เน้นว่าเมื่อเปลี่ยนเป็นตัวแปร u ต้องเปลี่ยนขอบเขตบน-ล่างทันที ห้ามนำขอบเขตเดิมของ x มาแทนในรูป u',
       shortcutTip: 'ทริคลัด: มองหาอนุพันธ์ของฟังก์ชันย่อย เช่น ถ้าเห็น x^3 ให้แยกเป็น x^2 * x dx แล้วแทน u = x^2+1 จะได้ x dx = du/2 ในพริบตา',
     },
@@ -389,9 +488,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '\\frac{4}{3}',
   },
 
-  // --- ข้อที่ 2 (4 คะแนน) ---
+  // --- ข้อที่ 4 (4 คะแนน) ---
   {
-    id: 2,
+    id: 4,
     topic: 'การอินทิเกรตฟังก์ชันตรรกยะโดยการหารยาวพหุนาม',
     topicEn: 'Rational Integrand & Polynomial Long Division',
     category: 'Long Division',
@@ -418,7 +517,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '7.4 Algebraic Identities: Long Division of Rational Functions',
       lectureNumber: 11,
       pageNumber: 55,
-      imagePath: './slides_img/q2_long_division.png',
+      imagePath: './slides_img/q4_long_division.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 55: ถ้ากำลังเศษมากกว่าหรือเท่ากับส่วน ต้องตั้งหารยาวก่อนเสมอ มิฉะนั้นจะแยกเศษส่วนย่อยผิดทันที',
       shortcutTip: 'ทริคลัด: ใช้วิธีบวกเข้า-หักออก หรือจับกลุ่มเศษส่วนเพื่อหลีกเลี่ยงการตั้งหารยาวหลายบรรทัด แล้วแยกเป็นรูป ln และ arctan',
     },
@@ -436,9 +535,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '\\frac{5}{2} + \\frac{1}{2}\\ln(2) + \\frac{\\pi}{4}',
   },
 
-  // --- ข้อที่ 3 (4 คะแนน) ---
+  // --- ข้อที่ 5 (4 คะแนน) ---
   {
-    id: 3,
+    id: 5,
     topic: 'การอินทิเกรตทีละส่วนแบบวนซ้ำ (Looping Integral)',
     topicEn: 'Integration by Parts (Looping Integral)',
     category: 'Parts',
@@ -448,43 +547,45 @@ export const mockExamQuestions: ExamQuestion[] = [
     hints: [
       'นี่คือโจทย์คลาสสิกของ Looping Integral ต้องอินทิเกรตทีละส่วน 2 รอบ',
       'กฎความสอดคล้อง: รอบแรกเลือกฟังก์ชันตรีโกณมิติเป็น $u$ รอบที่สองก็ต้องเลือกตรีโกณมิติเป็น $u$ ห้ามสลับไปเลือกเอกซ์โพเนนเชียล เพราะจะวนกลับไปที่เดิม',
-      'หลังทำรอบที่สอง อินทิกรัลเดิมจะปรากฏขึ้น ให้ย้ายข้างข้ามเครื่องหมายเท่ากับมาบวกกับ $I$ เดิมแล้วแก้สมการพีชคณิต',
+      'เมื่อทำครบ 2 รอบ จะได้รูป $\\int e^{2x}\\cos(3x)dx = \\dots - \\frac{9}{4} \\int e^{2x}\\cos(3x)dx$ ให้ย้ายข้างกลับมาบวก',
     ],
     speedHack: {
-      title: '⚡ ทริคลดเวลา: Formula Shortcut for e^(ax) cos(bx)',
-      description: 'สูตรสำเร็จในใจสำหรับ $\\int e^{ax}\\cos(bx)dx = \\frac{e^{ax}}{a^2+b^2}(a\\cos(bx) + b\\sin(bx)) + C$ ใช้ตรวจสอบคำตอบได้ทันที',
+      title: '⚡ ทริคลดเวลา: Looping Parts Standard Closed-Form',
+      description: 'โจทย์รูปแบบ $\\int e^{ax}\\cos(bx)dx$ มีผลเฉลยแม่บท: $\\frac{e^{ax}}{a^2+b^2}(a\\cos bx + b\\sin bx)$ นำมาทวนคำตอบได้ใน 5 วินาที',
       steps: [
-        'ขั้นตอนที่ 1: สังเกต $a = 2$ และ $b = 3$ ตัวส่วนจะต้องเป็น $a^2 + b^2 = 2^2 + 3^2 = 13$',
-        'ขั้นตอนที่ 2: วงเล็บด้านในจะเป็น $a\\cos(bx) + b\\sin(bx) = 2\\cos(3x) + 3\\sin(3x)$',
-        'ขั้นตอนที่ 3: ในห้องสอบให้เขียนวิธีทำ Parts 2 รอบตามฟอร์แมตเพื่อเก็บคะแนนเต็ม แล้วเทียบกับสูตรลัดนี้เพื่อให้มั่นใจ 100%',
+        'ขั้นตอนที่ 1: สังเกต $a = 2, b = 3$',
+        'ขั้นตอนที่ 2: ตัวส่วนร่วมคือ $a^2 + b^2 = 2^2 + 3^2 = 4 + 9 = 13$',
+        'ขั้นตอนที่ 3: ในวงเล็บคือ $a\\cos(bx) + b\\sin(bx) = 2\\cos(3x) + 3\\sin(3x)$',
+        'ขั้นตอนที่ 4: รวมเป็น $\\frac{e^{2x}}{13}(2\\cos(3x) + 3\\sin(3x)) + C$ เขียนตรวจคำตอบได้ทันที',
       ],
-      timeSaved: 'ประหยัดเวลา: รู้คำตอบล่วงหน้าใน 5 วินาที ป้องกันข้อผิดพลาดเรื่องเศษส่วน',
+      timeSaved: 'ประหยัดเวลา: 3 นาที และป้องกันเครื่องหมายลบตกหล่นในการอินทิเกรต 2 รอบ',
     },
     slideReference: {
-      slideTitle: '7.2 Integration by Parts: LIATE Rule & Looping Integrals',
+      slideTitle: '7.2 Integration by Parts: LIATE Rule & Tabular DI Method',
       lectureNumber: 11,
       pageNumber: 15,
-      imagePath: './slides_img/q3_parts.png',
+      imagePath: './slides_img/q5_parts.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 15: กรณีวนลูป (Looping e^(ax) cos(bx)) ต้องเลือก u ให้คงรูปแบบเดิมในการทำรอบที่สอง แล้วย้ายข้างกลับมาบวกกับ I ตัวเดิม',
       shortcutTip: 'ทริคลัด: ใช้วิธีตาราง Tabular DI Method ใส่เครื่องหมาย + - + - สลับกัน ช่วยลดข้อผิดพลาดเรื่องเครื่องหมายลบซ้อนลบได้ 100%',
     },
     stepByStepSolution: [
-      '**ขั้นตอนที่ 1: กำหนดตัวแปรและทำ Integration by Parts รอบที่ 1**\nให้ $I = \\int e^{2x} \\cos(3x) \\, dx$\nเลือกตัวแปรตามลำดับ:\n- $u = \\cos(3x) \\implies du = -3\\sin(3x) \\, dx$\n- $dv = e^{2x} \\, dx \\implies v = \\frac{1}{2}e^{2x}$\nใช้สูตร $\\int u \\, dv = uv - \\int v \\, du$:\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) - \\int \\frac{1}{2}e^{2x}(-3\\sin(3x)) \\, dx = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{2} \\int e^{2x}\\sin(3x) \\, dx$$',
-      '**ขั้นตอนที่ 2: ดำเนินการ Parts รอบที่ 2 บนอินทิกรัลย่อย**\nพิจารณา $J = \\int e^{2x}\\sin(3x) \\, dx$\nเลือกตัวแปรให้สอดคล้องกับรอบแรก:\n- $u = \\sin(3x) \\implies du = 3\\cos(3x) \\, dx$\n- $dv = e^{2x} \\, dx \\implies v = \\frac{1}{2}e^{2x}$\nจะได้:\n$$J = \\frac{1}{2}e^{2x}\\sin(3x) - \\int \\frac{1}{2}e^{2x}(3\\cos(3x)) \\, dx = \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2}\\int e^{2x}\\cos(3x) \\, dx = \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2}I$$',
-      '**ขั้นตอนที่ 3: แทนค่ากลับและแก้สมการพีชคณิตหาค่า I**\nนำ $J$ แทนกลับเข้าไปในสมการหลักของ $I$:\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{2} \\left( \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2}I \\right)$$\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{4}e^{2x}\\sin(3x) - \\frac{9}{4}I$$\nบวก $\\frac{9}{4}I$ เข้าทั้งสองข้างของสมการ:\n$$\\left(1 + \\frac{9}{4}\\right)I = \\frac{13}{4}I = \\frac{e^{2x}}{4} \\big(2\\cos(3x) + 3\\sin(3x)\\big)$$\nคูณด้วย $\\frac{4}{13}$ ทั้งสองข้าง และอย่าลืมบวกค่าคงที่ $+ C$:\n$$I = \\frac{e^{2x}}{13} \\big(2\\cos(3x) + 3\\sin(3x)\\big) + C$$',
+      '**ขั้นตอนที่ 1: กำหนดตัวแปรและอินทิเกรตทีละส่วนรอบที่ 1**\nให้ $I = \\int e^{2x} \\cos(3x) \\, dx$\nเลือกตามสูตร $\\int u \\, dv = uv - \\int v \\, du$:\n- ให้ $u = \\cos(3x) \\implies du = -3\\sin(3x) \\, dx$\n- ให้ $dv = e^{2x} \\, dx \\implies v = \\frac{1}{2}e^{2x}$\nแทนค่าในสูตร:\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) - \\int \\left(\\frac{1}{2}e^{2x}\\right)(-3\\sin(3x)) \\, dx$$\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{2} \\int e^{2x}\\sin(3x) \\, dx \\quad \\text{--- (สมการที่ 1)}$$',
+      '**ขั้นตอนที่ 2: อินทิเกรตทีละส่วนรอบที่ 2 กับอินทิกรัลใหม่**\nพิจารณา $\\int e^{2x}\\sin(3x) \\, dx$:\n- ให้ $u_2 = \\sin(3x) \\implies du_2 = 3\\cos(3x) \\, dx$\n- ให้ $dv_2 = e^{2x} \\, dx \\implies v_2 = \\frac{1}{2}e^{2x}$\nแทนค่าในสูตร:\n$$\\int e^{2x}\\sin(3x) \\, dx = \\frac{1}{2}e^{2x}\\sin(3x) - \\int \\left(\\frac{1}{2}e^{2x}\\right)(3\\cos(3x)) \\, dx$$\n$$= \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2} \\int e^{2x}\\cos(3x) \\, dx = \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2}I$$',
+      '**ขั้นตอนที่ 3: แทนผลลัพธ์กลับลงในสมการที่ 1**\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{2} \\left[ \\frac{1}{2}e^{2x}\\sin(3x) - \\frac{3}{2}I \\right]$$\n$$I = \\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{4}e^{2x}\\sin(3x) - \\frac{9}{4}I$$',
+      '**ขั้นตอนที่ 4: ย้ายข้างแก้สมการหา I**\nย้ายพจน์ $-\\frac{9}{4}I$ ไปบวกทางซ้ายมือ:\n$$I + \\frac{9}{4}I = e^{2x} \\left( \\frac{1}{2}\\cos(3x) + \\frac{3}{4}\\sin(3x) \\right)$$\n$$\\frac{13}{4}I = e^{2x} \\left( \\frac{2\\cos(3x) + 3\\sin(3x)}{4} \\right)$$\nคูณด้วย $\\frac{4}{13}$ ทั้งสองข้าง และบวกค่าคงที่ของการอินทิเกรต $+ C$:\n$$I = \\frac{e^{2x}}{13} \\big( 2\\cos(3x) + 3\\sin(3x) \\big) + C$$',
     ],
     rubric: [
-      { criteria: 'ตั้งและคำนวณ Integration by Parts รอบที่ 1 ได้ $\\frac{1}{2}e^{2x}\\cos(3x) + \\frac{3}{2}\\int e^{2x}\\sin(3x)dx$', points: 1 },
-      { criteria: 'ตั้งและคำนวณ Parts รอบที่ 2 อย่างสอดคล้อง ไม่วนกลับไปจุดเริ่มต้น', points: 1 },
-      { criteria: 'ย้ายข้างรวมพจน์ $\\left(1 + \\frac{9}{4}\\right)I = \\frac{13}{4}I$ ได้ถูกต้อง', points: 1 },
+      { criteria: 'เลือกตัวแปร $u, dv$ ถูกต้องในรอบแรกและอินทิเกรตได้สมการที่ 1', points: 1 },
+      { criteria: 'รักษารูปแบบการเลือก $u_2, dv_2$ อย่างคงเส้นคงวาในรอบสอง และระวังเครื่องหมายลบ', points: 1 },
+      { criteria: 'แทนค่ากลับและย้ายข้างพจน์ $-\\frac{9}{4}I$ มารวมเป็น $\\frac{13}{4}I$ ได้อย่างถูกต้อง', points: 1 },
       { criteria: 'สรุปคำตอบสุดท้าย $\\frac{e^{2x}}{13}(2\\cos(3x) + 3\\sin(3x)) + C$ ครบถ้วนพร้อม $+ C$', points: 1 },
     ],
     finalAnswer: '\\frac{e^{2x}}{13}\\big(2\\cos(3x) + 3\\sin(3x)\\big) + C',
   },
 
-  // --- ข้อที่ 4 (4 คะแนน) ---
+  // --- ข้อที่ 6 (4 คะแนน) ---
   {
-    id: 4,
+    id: 6,
     topic: 'การแทนค่าด้วยฟังก์ชันตรีโกณมิติและสามเหลี่ยมอ้างอิง',
     topicEn: 'Trigonometric Substitution & Right Triangle Reference',
     category: 'Trig Sub',
@@ -511,7 +612,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '7.4 Trigonometric Substitutions: Right Triangle Reference',
       lectureNumber: 11,
       pageNumber: 57,
-      imagePath: './slides_img/q4_trig_sub.png',
+      imagePath: './slides_img/q6_trig_sub.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 57: ห้ามลืมวาดรูปสามเหลี่ยมมุมฉากอ้างอิงเพื่อแปลงฟังก์ชันตรีโกณมิติกลับเป็นตัวแปร x ตอนจบ',
       shortcutTip: 'ทริคลัด: ท่องจำรูปแบบ sqrt(a^2 - x^2) -> x = a sin(theta), sqrt(a^2 + x^2) -> x = a tan(theta), sqrt(x^2 - a^2) -> x = a sec(theta)',
     },
@@ -529,9 +630,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '-\\frac{\\sqrt{9 - x^2}}{9x} + C',
   },
 
-  // --- ข้อที่ 5 (4 คะแนน) ---
+  // --- ข้อที่ 7 (4 คะแนน) ---
   {
-    id: 5,
+    id: 7,
     topic: 'การแยกเศษส่วนย่อยที่มีตัวประกอบกำลังสองที่แยกไม่ได้',
     topicEn: 'Partial Fractions (Linear & Irreducible Quadratic Factors)',
     category: 'Partial Fractions',
@@ -559,7 +660,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '7.4 Partial Fractions: Irreducible Quadratic Factors',
       lectureNumber: 11,
       pageNumber: 52,
-      imagePath: './slides_img/q5_partial_fractions.png',
+      imagePath: './slides_img/q7_partial_fractions.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 52: สำหรับตัวส่วน (x^2 + a^2) ตัวเศษต้องสมมุติเป็น Bx + C จากนั้นแยกเทอม Bx เป็น ln และ C เป็น arctan',
       shortcutTip: 'ทริคลัด: ใช้ Heaviside Cover-up Method หาเศษส่วนเชิงเส้นตรง A ได้ทันทีโดยเอามือปิดวงเล็บนั้นแล้วแทนค่าราก',
     },
@@ -577,9 +678,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '2\\ln|x - 1| + \\frac{3}{2}\\ln(x^2 + 4) - \\frac{1}{2}\\arctan\\left(\\frac{x}{2}\\right) + C',
   },
 
-  // --- ข้อที่ 6 (4 คะแนน) ---
+  // --- ข้อที่ 8 (4 คะแนน) ---
   {
-    id: 6,
+    id: 8,
     topic: 'การอินทิเกรตโดยใช้สูตรลดทอนกำลังและตารางสูตร',
     topicEn: 'Reduction Formulas & Integration by Table',
     category: 'Reduction Formulas',
@@ -606,7 +707,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '7.3 Tables of Integrals & Standard Reduction Formulas',
       lectureNumber: 11,
       pageNumber: 21,
-      imagePath: './slides_img/q6_reduction.png',
+      imagePath: './slides_img/q8_reduction.png',
       professorNote: 'ตรงกับสไลด์ Week 11 หน้า 21: ข้อสอบจะมีสูตรลดทอนมาให้ในโจทย์ ต้องแทนค่า n ให้ถูกต้องและระวังการอินทิเกรต sec(x) = ln|sec(x) + tan(x)|',
       shortcutTip: 'ทริคลัด: สำหรับ sec^3(x) แทน n = 3 ลงในสูตรลดทอนรอบเดียว จะหลงเหลือเพียงอินทิเกรต sec(x) ซึ่งเปิดดูจากตารางสูตรในห้องสอบได้ทันที',
     },
@@ -625,9 +726,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '\\frac{\\sqrt{2} + \\ln(\\sqrt{2} + 1)}{2}',
   },
 
-  // --- ข้อที่ 7 (4 คะแนน) ---
+  // --- ข้อที่ 9 (4 คะแนน) ---
   {
-    id: 7,
+    id: 9,
     topic: 'ลำดับและอนุกรมเรขาคณิตอนันต์',
     topicEn: 'Geometric Sequences and Infinite Series',
     category: 'Geometric Series',
@@ -653,7 +754,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '9.2 Geometric Series: Convergence Criterion |r| < 1 & Sum Formula',
       lectureNumber: 14,
       pageNumber: 10,
-      imagePath: './slides_img/q7_geometric_series.png',
+      imagePath: './slides_img/q9_geometric_series.png',
       professorNote: 'ตรงกับสไลด์ Week 14 หน้า 10: อนุกรมเรขาคณิตเป็นอนุกรมเดียวที่ข้อสอบสั่งให้หา "ค่าผลบวก (Sum)" ต้องเช็กเงื่อนไข |r| < 1 เสมอก่อนใช้สูตร S = a/(1-r)',
       shortcutTip: 'ทริคลัด: พจน์แรก "a" คือค่าที่ได้เมื่อแทนค่า n ตัวเริ่มต้นลงไปจริง ๆ (ไม่จำเป็นต้องเป็น n=0 เสมอไป) จะช่วยป้องกันการจำสูตรสับสน',
     },
@@ -672,9 +773,9 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: '\\frac{23}{6}',
   },
 
-  // --- ข้อที่ 8 (4 คะแนน) ---
+  // --- ข้อที่ 10 (4 คะแนน) ---
   {
-    id: 8,
+    id: 10,
     topic: 'การทดสอบอัตราส่วนสำหรับการลู่เข้าของอนุกรมอนันต์',
     topicEn: 'The Ratio Test for Series Convergence',
     category: 'Ratio Test',
@@ -701,7 +802,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '9.4 Tests for Convergence: The Ratio Test (d\'Alembert)',
       lectureNumber: 14,
       pageNumber: 24,
-      imagePath: './slides_img/q8_ratio_test.png',
+      imagePath: './slides_img/q10_ratio_test.png',
       professorNote: 'ตรงกับสไลด์ Week 14 หน้า 24: เมื่อเจอฟังก์ชันแฟกทอเรียล (n!) หรือเลขชี้กำลัง (c^n) ให้พุ่งเป้าไปที่ Ratio Test ทันที',
       shortcutTip: 'ทริคลัด: ใช้ Dominant Term Analysis แยกตัดกลุ่มพจน์ (n+1)^k / n^k -> 1 ทิ้งได้เลย แล้วโฟกัสเฉพาะตัวคูณส่วนเกินของแฟกทอเรียล',
     },
@@ -721,13 +822,13 @@ export const mockExamQuestions: ExamQuestion[] = [
     finalAnswer: 'L = \\frac{4}{5} < 1 \\implies \\text{ลู่เข้า (Converges)}',
   },
 
-  // --- ข้อที่ 9 (4 คะแนน) ---
+  // --- ข้อที่ 11 (5 คะแนน) ---
   {
-    id: 9,
+    id: 11,
     topic: 'อนุกรมกำลัง: รัศมีและช่วงแห่งการลู่เข้า',
-    topicEn: 'Power Series: Radius & Interval of Convergence',
+    topicEn: 'Power Series: Radius & Interval of Convergence (Endpoint Testing)',
     category: 'Power Series',
-    points: 4,
+    points: 5,
     difficulty: 'ข้อสอบระดับยาก',
     problemStatement: 'จงหารัศมีแห่งการลู่เข้า $R$ และช่วงแห่งการลู่เข้า (Interval of Convergence: IOC) ของอนุกรมกำลังต่อไปนี้ โดยแสดงการตรวจสอบพฤติกรรม ณ จุดขอบเขตอย่างชัดเจน:\n\n$$\\sum_{n=1}^{\\infty} \\frac{(-1)^n (x - 2)^n}{n \\cdot 3^n}$$',
     hints: [
@@ -750,7 +851,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '9.5 Power Series & Interval of Convergence (Endpoint Testing)',
       lectureNumber: 14,
       pageNumber: 34,
-      imagePath: './slides_img/q9_power_series.png',
+      imagePath: './slides_img/q11_power_series.png',
       professorNote: 'ตรงกับสไลด์ Week 14 หน้า 34-35: จุดตัดเกรดคือการเช็กจุดขอบเขต Endpoint ทั้งสองฝั่ง ห้ามเดาวงเล็บเปิดปิดเด็ดขาด ต้องแทนค่าทดสอบด้วย p-series หรือ Alternating Series',
       shortcutTip: 'ทริคลัด: เมื่อแทนจุดขอบแล้วกลายเป็น 1/n คืออนุกรมฮาร์มอนิก (ลู่ออก วงเล็บโค้ง "(") ถ้าเป็น (-1)^n/n คืออนุกรมสลับ (ลู่เข้า วงเล็บเหลี่ยม "]") ท่องไว้ใช้ได้ทันที',
     },
@@ -761,110 +862,13 @@ export const mockExamQuestions: ExamQuestion[] = [
       '**ขั้นตอนที่ 4: สรุปผลลัพธ์**\n- รัศมีแห่งการลู่เข้า (Radius of Convergence): $R = 3$\n- ช่วงแห่งการลู่เข้า (Interval of Convergence: IOC): $(-1, 5]$',
     ],
     rubric: [
-      { criteria: 'คำนวณลิมิตของ Ratio Test ได้ $\\frac{|x-2|}{3} < 1$', points: 1 },
-      { criteria: 'ระบุรัศมีแห่งการลู่เข้า $R = 3$ และช่วงเปิด $(-1, 5)$ ถูกต้อง', points: 1 },
-      { criteria: 'ตรวจสอบจุดขอบ $x = -1$ แสดงการเป็นอนุกรมฮาร์มอนิกที่ลู่ออก', points: 1 },
-      { criteria: 'ตรวจสอบจุดขอบ $x = 5$ ด้วย AST และสรุปช่วงแห่งการลู่เข้าเป็น $(-1, 5]$ ได้ถูกต้อง', points: 1 },
+      { criteria: 'คำนวณลิมิต Ratio Test ได้ \\lim |a_{n+1}/a_n| = \\frac{|x-2|}{3}', points: 1 },
+      { criteria: 'หาเงื่อนไข L < 1 ระบุรัศมีแห่งการลู่เข้า R = 3 และช่วงเปิด (-1, 5) ถูกต้อง', points: 1 },
+      { criteria: 'ตรวจสอบจุดขอบเขตซ้าย x = -1 แสดงการเป็นอนุกรมฮาร์มอนิกที่ลู่ออก', points: 1 },
+      { criteria: 'ตรวจสอบจุดขอบเขตขวา x = 5 ด้วยทฤษฎีบทอนุกรมสลับ (AST) พบว่าลู่เข้า', points: 1 },
+      { criteria: 'สรุปช่วงแห่งการลู่เข้า (IOC) เป็น (-1, 5] พร้อมวงเล็บเปิดปิดถูกต้องสมบูรณ์', points: 1 },
     ],
     finalAnswer: 'R = 3, \\quad \\text{IOC} = (-1, 5]',
-  },
-
-  // --- ข้อที่ 10 (4 คะแนน) ---
-  {
-    id: 10,
-    topic: 'อนุกรมแมคลอรินและการหาลิมิตในรูปแบบยังไม่กำหนด',
-    topicEn: 'Maclaurin Series & Indeterminate Limit Evaluation',
-    category: 'Maclaurin',
-    points: 4,
-    difficulty: 'มาตรฐานข้อสอบ',
-    problemStatement: 'โดยการใช้อนุกรมแมคลอรินมาตรฐาน (ห้ามใช้กฎของโลปิตาล L’Hôpital’s Rule):\n\n(ก) จงเขียนอนุกรมแมคลอรินของ $\\cos(x)$ และ $e^{-x^2/2}$ ถึงพจน์ที่มีดีกรี $x^4$\n(ข) จงหาค่าของลิมิตต่อไปนี้:\n$$\\lim_{x \\to 0} \\frac{\\cos(x) - e^{-x^2/2}}{x^4}$$',
-    hints: [
-      'อนุกรมมาตรฐานของโคไซน์: $\\cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\dots$',
-      'อนุกรมเอกซ์โพเนนเชียล: $e^u = 1 + u + \\frac{u^2}{2!} + \\dots$ ให้แทนค่า $u = -\\frac{x^2}{2}$',
-      'นำสองอนุกรมมาลบกัน พจน์ค่าคงที่ 1 และพจน์ $x^2$ จะหักล้างกันหมด เหลือพจน์ $x^4$ นำมาหารด้วยตัวส่วนเพื่อหาลิมิต',
-    ],
-    speedHack: {
-      title: '⚡ ทริคลดเวลา: Direct Subtraction of x^4 Coefficients',
-      description: 'เทียบสัมประสิทธิ์หน้า $x^4$ ในเศษโดยตรง ไม่ต้องเขียนกฎโลปิตาล 4 รอบซึ่งเสี่ยงต่อการดิฟผิดพลาดมหาศาล',
-      steps: [
-        'ขั้นตอนที่ 1: สัมประสิทธิ์หน้า $x^4$ ของ $\\cos(x)$ คือ $+\\frac{1}{4!} = \\frac{1}{24}$',
-        'ขั้นตอนที่ 2: สัมประสิทธิ์หน้า $x^4$ ของ $e^{-x^2/2}$ คือ $\\frac{(-1/2)^2}{2!} = \\frac{1/4}{2} = \\frac{1}{8}$',
-        'ขั้นตอนที่ 3: จับลบกันในบรรทัดเดียว: $\\frac{1}{24} - \\frac{1}{8} = \\frac{1 - 3}{24} = -\\frac{2}{24} = -\\frac{1}{12}$',
-        'ขั้นตอนที่ 4: ตอบ $-\\frac{1}{12}$ ทันทีใน 30 วินาที!',
-      ],
-      timeSaved: 'ประหยัดเวลา: 4 นาที (หลีกเลี่ยงการดิฟกฎโลปิตาล 4 รอบซ้อน)',
-    },
-    slideReference: {
-      slideTitle: '10.1 Taylor Polynomials & Maclaurin Series for Limits',
-      lectureNumber: 15,
-      pageNumber: 7,
-      imagePath: './slides_img/q10_maclaurin.png',
-      professorNote: 'ตรงกับสไลด์ Week 15 หน้า 7: การหาลิมิตที่กำลังสูง (เช่น ส่วน x^4) การใช้อนุกรมแมคลอรินตัดพจน์จะเร็วกว่า L\'Hôpital 4 รอบอย่างมหาศาล',
-      shortcutTip: 'ทริคลัด: แทนค่าฟังก์ชันประกอบลงในอนุกรมมาตรฐานของ cos(x) และ e^u โดยตรง พจน์ต่ำกว่า x^4 จะหักล้างกันหมดจนเหลือสัมประสิทธิ์ตอบได้ทันที',
-    },
-    stepByStepSolution: [
-      '**ขั้นตอนที่ 1: กระจายอนุกรมแมคลอรินของ cos(x)**\nจากสูตรอนุกรมมาตรฐานของโคไซน์:\n$$\\cos(x) = 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\mathcal{O}(x^6) = 1 - \\frac{x^2}{2} + \\frac{x^4}{24} - \\mathcal{O}(x^6)$$',
-      '**ขั้นตอนที่ 2: กระจายอนุกรมแมคลอรินของ e^(-x^2 / 2)**\nจากสูตรมาตรฐาน $e^u = 1 + u + \\frac{u^2}{2!} + \\mathcal{O}(u^3)$ แทนค่า $u = -\\frac{x^2}{2}$:\n$$e^{-x^2/2} = 1 + \\left(-\\frac{x^2}{2}\\right) + \\frac{1}{2!}\\left(-\\frac{x^2}{2}\\right)^2 + \\mathcal{O}(x^6)$$\n$$= 1 - \\frac{x^2}{2} + \\frac{1}{2}\\left(\\frac{x^4}{4}\\right) + \\mathcal{O}(x^6) = 1 - \\frac{x^2}{2} + \\frac{x^4}{8} - \\mathcal{O}(x^6)$$',
-      '**ขั้นตอนที่ 3: หักลบอนุกรมในตัวเศษ**\n$$\\cos(x) - e^{-x^2/2} = \\left(1 - \\frac{x^2}{2} + \\frac{x^4}{24}\\right) - \\left(1 - \\frac{x^2}{2} + \\frac{x^4}{8}\\right) + \\mathcal{O}(x^6)$$\n$$= (1 - 1) + \\left(-\\frac{x^2}{2} + \\frac{x^2}{2}\\right) + \\left(\\frac{1}{24} - \\frac{1}{8}\\right)x^4 + \\mathcal{O}(x^6)$$\n$$= 0 + 0 + \\left(\\frac{1 - 3}{24}\\right)x^4 + \\mathcal{O}(x^6) = -\\frac{2}{24}x^4 + \\mathcal{O}(x^6) = -\\frac{1}{12}x^4 + \\mathcal{O}(x^6)$$',
-      '**ขั้นตอนที่ 4: คำนวณค่าลิมิต**\n$$\\lim_{x \\to 0} \\frac{\\cos(x) - e^{-x^2/2}}{x^4} = \\lim_{x \\to 0} \\frac{-\\frac{1}{12}x^4 + \\mathcal{O}(x^6)}{x^4} = \\lim_{x \\to 0} \\left( -\\frac{1}{12} + \\mathcal{O}(x^2) \\right) = -\\frac{1}{12}$$',
-    ],
-    rubric: [
-      { criteria: 'เขียนอนุกรมแมคลอรินของ $\\cos(x)$ ถึงพจน์ $x^4$ ได้ถูกต้อง: $1 - \\frac{x^2}{2} + \\frac{x^4}{24}$', points: 1 },
-      { criteria: 'เขียนอนุกรมแมคลอรินของ $e^{-x^2/2}$ ถึงพจน์ $x^4$ ได้ถูกต้อง: $1 - \\frac{x^2}{2} + \\frac{x^4}{8}$', points: 1 },
-      { criteria: 'แสดงการหักล้างของพจน์ค่าคงที่และ $x^2$ และคำนวณ $\\left(\\frac{1}{24} - \\frac{1}{8}\\right)x^4 = -\\frac{1}{12}x^4$', points: 1 },
-      { criteria: 'หารด้วย $x^4$ และหาค่าลิมิตได้ถูกต้องแม่นยำเป็น $-\\frac{1}{12}$', points: 1 },
-    ],
-    finalAnswer: '-\\frac{1}{12}',
-  },
-
-  // --- ข้อที่ 11 (5 คะแนน) ---
-  {
-    id: 11,
-    topic: 'อนุกรมเทย์เลอร์รอบจุด a ≠ 0 ในรูปสัญลักษณ์ซิกมา',
-    topicEn: 'Taylor Series Expansion around x = a (a != 0) with Sigma Notation',
-    category: 'Taylor Series',
-    points: 5,
-    difficulty: 'ข้อสอบระดับยาก',
-    problemStatement: 'กำหนดให้ฟังก์ชัน $f(x) = \\frac{1}{x^2}$\n\n(ก) จงหาค่าของ $f(1), f\'(1), f\'\'(1)$ และ $f\'\'\'(1)$\n(ข) จงหาสูตรทั่วไปของอนุพันธ์อันดับที่ $n$ คือ $f^{(n)}(1)$ สำหรับทุก $n \\ge 0$\n(ค) จงเขียนอนุกรมเทย์เลอร์ของ $f(x)$ รอบจุด $a = 1$ ในรูปสัญลักษณ์ซิกมา ($\\sum_{n=0}^{\\infty}$) อย่างย่อ\n(ง) จงระบุรัศมีแห่งการลู่เข้า $R$ ของอนุกรมนี้',
-    hints: [
-      'เขียน $f(x) = x^{-2}$ แล้วหาอนุพันธ์ทีละอันดับ สังเกตการสลับเครื่องหมาย $(-1)^n$ และการเพิ่มขึ้นของแฟกทอเรียล',
-      'สูตรสัมประสิทธิ์ของเทย์เลอร์คือ $c_n = \\frac{f^{(n)}(a)}{n!}$ เมื่อนำมาหาร $n!$ จะตัดทอนกันเหลือเพียงรูปพหุนามอย่างง่าย',
-      'รัศมีการลู่เข้า $R$ เท่ากับระยะทางจากจุดศูนย์กลาง $a = 1$ ไปยังจุดที่ฟังก์ชันหาค่าไม่ได้ (Singularity) คือ $x = 0$',
-    ],
-    speedHack: {
-      title: '⚡ ทริคลดเวลา: Geometric Distance to Singularity for Radius R',
-      description: 'หารัศมีการลู่เข้า $R$ ได้ใน 3 วินาทีจากทฤษฎีบทการวิเคราะห์เชิงซ้อน: $R$ เท่ากับระยะห่างจากศูนย์กลาง $a$ ไปยังจุดที่ส่วนเป็นศูนย์ที่ใกล้ที่สุด',
-      steps: [
-        'ขั้นตอนที่ 1: ฟังก์ชัน $f(x) = \\frac{1}{x^2}$ มีจุดระเบิด (Singularity) ที่ $x = 0$',
-        'ขั้นตอนที่ 2: จุดศูนย์กลางของอนุกรมคือ $a = 1$',
-        'ขั้นตอนที่ 3: รัศมีการลู่เข้า $R = |a - \\text{Singularity}| = |1 - 0| = 1$ ทันทีโดยไม่ต้องตั้ง Ratio Test',
-        'ขั้นตอนที่ 4: สัมประสิทธิ์ $\\frac{(-1)^n (n+1)!}{n!} = (-1)^n (n+1)$ ตัด $n!$ ได้ทันที',
-      ],
-      timeSaved: 'ประหยัดเวลา: 3 นาที (ตัดภาระการพิสูจน์ Ratio Test ยาวเหยียด)',
-    },
-    slideReference: {
-      slideTitle: '10.2 Taylor Series about x = a & General Sigma Notation',
-      lectureNumber: 15,
-      pageNumber: 9,
-      imagePath: './slides_img/q11_taylor_series.png',
-      professorNote: 'ตรงกับสไลด์ Week 15 หน้า 9: ข้อสอบ 5 คะแนนเต็มจะเน้นการหาสูตรอนุพันธ์อันดับ n f^(n)(a) และเขียนรูปย่อซิกมา พร้อมระบุรัศมี R',
-      shortcutTip: 'ทริคลัด: หารัศมีการลู่เข้า R ได้อย่างรวดเร็วจากระยะทางบนแกนจริง จากจุดศูนย์กลาง a ไปยังจุดที่ฟังก์ชันหาค่าไม่ได้ (Singularity) เช่น 1/x^2 มีปัญหาที่ x=0 เมื่อศูนย์กลาง a=1 ดังนั้น R = |1 - 0| = 1',
-    },
-    stepByStepSolution: [
-      '**ขั้นตอนที่ 1: คำนวณอนุพันธ์ 4 อันดับแรก ณ จุด $x = 1$**\nเขียนฟังก์ชันในรูปเลขยกกำลัง: $f(x) = x^{-2}$\n1. $f(x) = x^{-2} \\implies f(1) = 1^{-2} = 1$\n2. $f\'(x) = -2x^{-3} \\implies f\'(1) = -2(1)^{-3} = -2$\n3. $f\'\'(x) = (-2)(-3)x^{-4} = 6x^{-4} \\implies f\'\'(1) = 6(1)^{-4} = 6$\n4. $f\'\'\'(x) = 6(-4)x^{-5} = -24x^{-5} \\implies f\'\'\'(1) = -24(1)^{-5} = -24$',
-      '**ขั้นตอนที่ 2: สังเกตแบบรูปเพื่อหาสูตรทั่วไปของ $f^{(n)}(1)$**\nพิจารณาความสัมพันธ์ของเครื่องหมายและแฟกทอเรียล:\n- $f(1) = 1 = (-1)^0 \\cdot 1!$\n- $f\'(1) = -2 = (-1)^1 \\cdot 2!$\n- $f\'\'(1) = 6 = (-1)^2 \\cdot 3!$\n- $f\'\'\'(1) = -24 = (-1)^3 \\cdot 4!$\nโดยหลักอุปนัยเชิงคณิตศาสตร์ จะได้สูตรทั่วไปของอนุพันธ์อันดับที่ $n$ คือ:\n$$f^{(n)}(1) = (-1)^n (n + 1)! \\quad \\text{สำหรับทุก } n \\ge 0$$',
-      '**ขั้นตอนที่ 3: คำนวณสัมประสิทธิ์ของอนุกรมเทย์เลอร์ $c_n$**\nจากนิยามของอนุกรมเทย์เลอร์รอบจุด $a = 1$:\n$$c_n = \\frac{f^{(n)}(1)}{n!} = \\frac{(-1)^n (n + 1)!}{n!} = \\frac{(-1)^n (n + 1)n!}{n!} = (-1)^n (n + 1)$$\nเมื่อกระจาย 4 พจน์แรกจะได้:\n$$T(x) = 1 - 2(x - 1) + 3(x - 1)^2 - 4(x - 1)^3 + \\cdots$$',
-      '**ขั้นตอนที่ 4: เขียนในรูปสัญลักษณ์ซิกมา (Sigma Notation)**\n$$f(x) = \\sum_{n=0}^{\\infty} (-1)^n (n + 1)(x - 1)^n$$',
-      '**ขั้นตอนที่ 5: หารัศมีแห่งการลู่เข้า R**\nใช้ Ratio Test:\n$$L = \\lim_{n \\to \\infty} \\left| \\frac{c_{n+1}(x - 1)^{n+1}}{c_n(x - 1)^n} \\right| = \\lim_{n \\to \\infty} \\left| \\frac{(-1)^{n+1}(n + 2)(x - 1)^{n+1}}{(-1)^n(n + 1)(x - 1)^n} \\right| = |x - 1| \\lim_{n \\to \\infty} \\frac{n + 2}{n + 1} = |x - 1|$$\nอนุกรมจะลู่เข้าเมื่อ $L < 1 \\iff |x - 1| < 1$\nดังนั้น **รัศมีแห่งการลู่เข้าคือ $R = 1$** (สอดคล้องกับระยะทางจากศูนย์กลาง $a = 1$ ไปยังจุด Singularity $x = 0$)',
-    ],
-    rubric: [
-      { criteria: 'คำนวณอนุพันธ์ 4 อันดับแรกได้ถูกต้องครบถ้วน: $f(1)=1, f\'(1)=-2, f\'\'(1)=6, f\'\'\'(1)=-24$', points: 1 },
-      { criteria: 'สรุปแบบรูปของสูตรอนุพันธ์ทั่วไป $f^{(n)}(1) = (-1)^n (n+1)!$ ได้อย่างถูกต้อง', points: 1 },
-      { criteria: 'คำนวณสัมประสิทธิ์ $c_n = \\frac{f^{(n)}(1)}{n!} = (-1)^n (n+1)$ ได้ถูกต้อง', points: 1 },
-      { criteria: 'เขียนอนุกรมในรูปซิกมา $\\sum_{n=0}^{\\infty} (-1)^n (n+1)(x-1)^n$ ได้ถูกต้องแม่นยำ', points: 1 },
-      { criteria: 'แสดงการหารัศมีแห่งการลู่เข้า $R = 1$ ด้วย Ratio Test หรือเหตุผลทางเรขาคณิต', points: 1 },
-    ],
-    finalAnswer: '\\sum_{n=0}^{\\infty} (-1)^n (n + 1)(x - 1)^n, \\quad R = 1',
   },
 
   // --- ข้อที่ 12 (5 คะแนน) ---
@@ -879,7 +883,7 @@ export const mockExamQuestions: ExamQuestion[] = [
     hints: [
       'เริ่มต้นจากอนุกรมมาตรฐาน $\\sin(u) = \\sum_{n=0}^{\\infty} (-1)^n \\frac{u^{2n+1}}{(2n+1)!}$ แล้วแทนค่า $u = x^2$',
       'หารด้วย $x$ ก่อนอินทิเกรตเทียบกับตัวแปร $x$',
-      'ทฤษฎีบทอนุกรมสลับระบุว่า $|\text{Error}| \\le |b_{n+1}|$ นั่นคือขนาดของความคลาดเคลื่อนจะไม่เกินขนาดของพจน์แรกที่ถูกตัดทิ้ง (พจน์ที่ $n = 2$)',
+      'ทฤษฎีบทอนุกรมสลับระบุว่า |\\text{Error}| \\le |b_{n+1}|$ นั่นคือขนาดของความคลาดเคลื่อนจะไม่เกินขนาดของพจน์แรกที่ถูกตัดทิ้ง (พจน์ที่ $n = 2$)',
     ],
     speedHack: {
       title: '⚡ ทริคลดเวลา: AST Error Bound Immediate Calculation',
@@ -888,7 +892,7 @@ export const mockExamQuestions: ExamQuestion[] = [
         'ขั้นตอนที่ 1: พจน์ที่ตัดทิ้งคือ $n=2$: $\\frac{x^{4(2)+2}}{(2(2)+1)!(4(2)+2)} = \\frac{x^{10}}{5! \\cdot 10} = \\frac{x^{10}}{1200}$',
         'ขั้นตอนที่ 2: แทน $x = 1/2$: $(1/2)^{10} = \\frac{1}{1024}$',
         'ขั้นตอนที่ 3: คำนวณส่วนล่าง: $1024 \\times 1200 = 1,228,800$',
-        'ขั้นตอนที่ 4: สรุปขอบเขตความคลาดเคลื่อน $|\text{Error}| \\le \\frac{1}{1,228,800}$ ใน 1 บรรทัด',
+        'ขั้นตอนที่ 4: สรุปขอบเขตความคลาดเคลื่อน |\\text{Error}| \\le \\frac{1}{1,228,800}$ ใน 1 บรรทัด',
       ],
       timeSaved: 'ประหยัดเวลา: 3 นาที (ตัดขั้นตอนพิสูจน์อสมการความคลาดเคลื่อน)',
     },
@@ -896,7 +900,7 @@ export const mockExamQuestions: ExamQuestion[] = [
       slideTitle: '10.3 Finding & Using Taylor Series: Non-Elementary Integrals',
       lectureNumber: 15,
       pageNumber: 27,
-      imagePath: './slides_img/q12_taylor_approx.png',
+      imagePath: './slides_img/q12_taylor_applications.png',
       professorNote: 'ตรงกับสไลด์ Week 15 หน้า 27: การประมาณค่าอินทิกรัล sin(x^2)/x ให้อินทิเกรตทีละพจน์ และใช้ทฤษฎีบทอนุกรมสลับ (AST Error Bound) หาขอบเขตความคลาดเคลื่อน',
       shortcutTip: 'ทริคลัด: ค่าความคลาดเคลื่อนสูงสุดของอนุกรมสลับจะเท่ากับขนาดของพจน์แรกที่ถูกตัดทิ้ง (|Error| <= |b_{n+1}|) เสมอ นำพจน์ถัดไปมาคิดเลขได้ทันที',
     },
@@ -911,16 +915,84 @@ export const mockExamQuestions: ExamQuestion[] = [
       { criteria: 'อินทิเกรตทีละพจน์ได้ถูกต้องเป็น $\\sum_{n=0}^{\\infty} \\frac{(-1)^n x^{4n+2}}{(2n+1)!(4n+2)}$', points: 1 },
       { criteria: 'คำนวณค่าของสองพจน์แรกได้ $\\frac{1}{8}$ และ $-\\frac{1}{2304}$', points: 1 },
       { criteria: 'หาค่าประมาณในรูปเศษส่วนแท้ที่แม่นยำได้ $\\frac{287}{2304}$', points: 1 },
-      { criteria: 'ใช้ทฤษฎีบทอนุกรมสลับระบุขอบเขตความคลาดเคลื่อน $|\\text{Error}| \\le \\frac{1}{1,228,800}$ ได้ถูกต้อง', points: 1 },
+      { criteria: 'ใช้ทฤษฎีบทอนุกรมสลับระบุขอบเขตความคลาดเคลื่อน |\\text{Error}| \\le \\frac{1}{1,228,800}$ ได้ถูกต้อง', points: 1 },
     ],
     finalAnswer: '\\text{ค่าประมาณ} = \\frac{287}{2304}, \\quad |\\text{Error}| \\le \\frac{1}{1,228,800}',
   },
 ];
 
 /* ==========================================================================
-   3. คลังแบบฝึกหัดเจาะลึก 24 ข้อ (PRACTICE DRILLS) - ภาษาไทย 100%
+   3. คลังแบบฝึกหัดเจาะลึก (PRACTICE DRILLS) - ภาษาไทย 100%
    ========================================================================== */
 export const practiceBank: PracticeProblem[] = [
+  // --- เทคนิคที่ 0A: Antiderivatives & IVP ---
+  {
+    id: 'prac-ivp-1',
+    topicId: 'Antiderivatives & IVP',
+    topic: 'ปัญหาค่าเริ่มต้นอันดับหนึ่ง',
+    level: 'ระดับง่าย',
+    problemStatement: 'กำหนดให้อนุพันธ์ $f\'(x) = 6x^2 - 4x + 1$ และเงื่อนไขเริ่มต้น $f(0) = 3$ จงหาฟังก์ชัน $f(x)$',
+    hint: 'อินทิเกรตพหุนามโดยตรงแล้วแทน $x = 0$ เพื่อหาค่าคงที่ $C$',
+    speedHack: 'เมื่อโจทย์ให้ค่าที่ $x = 0$ ค่าคงที่ $C$ จะเท่ากับ $f(0) = 3$ ทันที อินทิเกรตได้ $2x^3 - 2x^2 + x + 3$',
+    stepByStepSolution: [
+      '$$f(x) = \\int (6x^2 - 4x + 1) \\, dx = 6\\left(\\frac{x^3}{3}\\right) - 4\\left(\\frac{x^2}{2}\\right) + x + C = 2x^3 - 2x^2 + x + C$$',
+      'แทน $x = 0$: $f(0) = 0 - 0 + 0 + C = 3 \\implies C = 3$',
+      'สรุปคำตอบ: $f(x) = 2x^3 - 2x^2 + x + 3$',
+    ],
+    finalAnswer: 'f(x) = 2x^3 - 2x^2 + x + 3',
+  },
+  {
+    id: 'prac-ivp-2',
+    topicId: 'Antiderivatives & IVP',
+    topic: 'ปัญหาค่าเริ่มต้นอันดับสองและการเคลื่อนที่',
+    level: 'ข้อสอบลวง',
+    problemStatement: 'วัตถุเคลื่อนที่ด้วยความเร่ง $a(t) = \\cos(t) + 2e^t$ โดยมีความเร็วเริ่มต้น $v(0) = 3$ และตำแหน่งเริ่มต้น $s(0) = 5$ จงหาสมการตำแหน่ง $s(t)$',
+    hint: 'อินทิเกรตความเร่งหาความเร็ว $v(t)$ ก่อนแก้หา $C_1$ แล้วจึงอินทิเกรตหาตำแหน่ง $s(t)$ เพื่อแก้หา $C_2$',
+    speedHack: 'จำรูป: $\\int \\cos t = \\sin t$, $\\int \\sin t = -\\cos t$ ระวังเครื่องหมายลบที่ตำแหน่ง $s(t)$',
+    stepByStepSolution: [
+      'ความเร็ว: $v(t) = \\int (\\cos(t) + 2e^t) dt = \\sin(t) + 2e^t + C_1$',
+      'แทน $t = 0$: $v(0) = \\sin(0) + 2e^0 + C_1 = 3 \\implies 0 + 2 + C_1 = 3 \\implies C_1 = 1$',
+      'ดังนั้น $v(t) = \\sin(t) + 2e^t + 1$',
+      'ตำแหน่ง: $s(t) = \\int (\\sin(t) + 2e^t + 1) dt = -\\cos(t) + 2e^t + t + C_2$',
+      'แทน $t = 0$: $s(0) = -\\cos(0) + 2e^0 + 0 + C_2 = 5 \\implies -1 + 2 + C_2 = 5 \\implies 1 + C_2 = 5 \\implies C_2 = 4$',
+      'สรุปสมการตำแหน่ง: $s(t) = -\\cos(t) + 2e^t + t + 4$',
+    ],
+    finalAnswer: 's(t) = -\\cos(t) + 2e^t + t + 4',
+  },
+
+  // --- เทคนิคที่ 0B: FTC & Leibniz Rule ---
+  {
+    id: 'prac-ftc-1',
+    topicId: 'FTC & Leibniz',
+    topic: 'กฎของไลบ์นิซกับขอบเขตฟังก์ชันประกอบ',
+    level: 'ระดับปานกลาง',
+    problemStatement: 'จงหาอนุพันธ์ $\\frac{d}{dx} \\left[ \\int_{0}^{x^2} \\sqrt{1 + t^3} \\, dt \\right]$',
+    hint: 'ใช้สูตร $\\frac{d}{dx}\\int_0^{u(x)} f(t)dt = f(u(x)) \\cdot u\'(x)$ โดยที่ $u(x) = x^2$',
+    speedHack: 'แทน $t$ ด้วย $x^2$ ได้ $\\sqrt{1 + (x^2)^3} = \\sqrt{1 + x^6}$ แล้วคูณด้วยดิฟขอบเขต $2x$ ตอบ $2x\\sqrt{1+x^6}$ ใน 5 วินาที',
+    stepByStepSolution: [
+      'ให้ $F(x) = \\int_{0}^{x^2} \\sqrt{1 + t^3} \\, dt$',
+      'ตามทฤษฎีบทหลักมูลแคลคูลัสและกฎลูกโซ่:\n$$\\frac{dF}{dx} = \\sqrt{1 + (x^2)^3} \\cdot \\frac{d}{dx}(x^2)$$',
+      '$$= \\sqrt{1 + x^6} \\cdot 2x = 2x\\sqrt{1 + x^6}$$',
+    ],
+    finalAnswer: '2x\\sqrt{1 + x^6}',
+  },
+  {
+    id: 'prac-ftc-2',
+    topicId: 'FTC & Leibniz',
+    topic: 'สมบัติฟังก์ชันคู่และฟังก์ชันคี่บนช่วงสมมาตร',
+    level: 'ข้อสอบลวง',
+    problemStatement: 'จงหาค่าที่แม่นยำของอินทิกรัล: $$\\int_{-\\pi/4}^{\\pi/4} \\left( x^3 \\cos(x) + \\tan(x) + \\sec^2(x) \\right) \\, dx$$',
+    hint: 'พิจารณาความเป็นฟังก์ชันคู่/คี่ของแต่ละพจน์แยกกันบนช่วง $[-\\pi/4, \\pi/4]$',
+    speedHack: '$x^3\\cos x$ เป็นฟังก์ชันคี่, $\\tan x$ เป็นฟังก์ชันคี่ อินทิเกรตบนช่วงสมมาตรได้ 0 ทันที เหลือแค่ $2\\int_0^{\\pi/4} \\sec^2 x dx = 2[\\tan x]_0^{\\pi/4} = 2(1) = 2$',
+    stepByStepSolution: [
+      'พิจารณาแต่ละพจน์บนช่วงสมมาตร $[-\\pi/4, \\pi/4]$:',
+      '1. $x^3\\cos(x)$: คี่ $\\times$ คู่ $=$ คี่ $\\implies \\int_{-\\pi/4}^{\\pi/4} x^3\\cos(x) dx = 0$',
+      '2. $\\tan(x)$: เป็นฟังก์ชันคี่ $\\implies \\int_{-\\pi/4}^{\\pi/4} \\tan(x) dx = 0$',
+      '3. $\\sec^2(x)$: เป็นฟังก์ชันคู่ $\\implies \\int_{-\\pi/4}^{\\pi/4} \\sec^2(x) dx = 2\\int_{0}^{\\pi/4} \\sec^2(x) dx = 2[\\tan(x)]_{0}^{\\pi/4} = 2(1 - 0) = 2$',
+      'รวมผลลัพธ์: $0 + 0 + 2 = 2$',
+    ],
+    finalAnswer: '2',
+  },
   // --- เทคนิคที่ 1: Substitution ---
   {
     id: 'prac-sub-1',

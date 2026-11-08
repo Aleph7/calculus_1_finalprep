@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Slide Reference Extraction Pipeline
+Slide Reference Extraction Pipeline (12 Exam Blueprint Mapping)
 Extracts high-resolution reference slide screenshots from KMITL Calculus 1 PDF lecture notes
 and saves them to public/slides_img/ for each of the 12 exam questions.
-Includes automatic fallback generation of clean Monochrome SVG/PNG reference cards.
+Includes automatic fallback generation of clean Monochrome SVG reference cards.
 """
 
 import os
@@ -14,137 +14,137 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 RAW_SLIDES_DIR = BASE_DIR / "raw_slides"
 OUTPUT_DIR = BASE_DIR / "public" / "slides_img"
 
-# Question-to-Slide mapping table
+# Updated 12-Question Blueprint to Slide Mapping Table
 QUESTION_SLIDE_MAPPING = [
     {
         "id": 1,
-        "filename": "q1_substitution.png",
+        "filename": "q1_antiderivatives_ivp.png",
+        "pdf_file": "Week 10 (1).pdf",
+        "page_num": 22,
+        "slide_title": "6.3 Differential Equations & Initial Value Problems (IVP)",
+        "lecture": 10,
+        "topic_th": "ปฏิยานุพันธ์และปัญหาค่าเริ่มต้น (หาค่าคงที่ C)",
+        "professor_note": "ตรงกับสไลด์ Week 10 หน้า 22 (Example 2): การแก้ปัญหาค่าเริ่มต้น (Initial Value Problem) ต้องอินทิเกรตและแทนเงื่อนไขเริ่มต้นเพื่อแก้หาค่า C ทีละลำดับ ห้ามรวมค่าคงที่เข้าด้วยกัน",
+        "shortcut_tip": "ทริคลัด: เมื่อให้ f'(1) และ f(1) มา ให้แทน x=1 ในรูปปฏิยานุพันธ์ ผลรวมสัมประสิทธิ์จะคิดเลขในใจได้ทันที"
+    },
+    {
+        "id": 2,
+        "filename": "q2_ftc_leibniz.png",
+        "pdf_file": "Week 10 (1).pdf",
+        "page_num": 23,
+        "slide_title": "6.4 Second Fundamental Theorem of Calculus & Leibniz Rule",
+        "lecture": 10,
+        "topic_th": "ทฤษฎีบทหลักมูลแคลคูลัสและสมบัติความสมมาตรฟังก์ชันคู่/คี่",
+        "professor_note": "ตรงกับสไลด์ Week 10 หน้า 23 และ Week 9 หน้า 23: กฎของไลบ์นิซ (Leibniz Rule) ต้องคูณด้วยอนุพันธ์ของขอบเขตบน u'(x) เสมอ และถ้าเจอช่วงสมมาตร [-a, a] ให้เช็กฟังก์ชันคี่เพื่อตัดเป็น 0",
+        "shortcut_tip": "ทริคลัด: ฟังก์ชันคี่บนช่วง [-a, a] อินทิเกรตได้ 0 เสมอ ไม่ต้องเสียเวลาหาปฏิยานุพันธ์ ส่วนฟังก์ชันคู่ให้คิดแค่ 2 เท่าของช่วง [0, a]"
+    },
+    {
+        "id": 3,
+        "filename": "q3_substitution.png",
         "pdf_file": "Week 11 (3).pdf",
-        "page_num": 10,  # 1-indexed
+        "page_num": 10,
         "slide_title": "7.1 Integration by Substitution: Definite Integrals & Boundary Shifts",
         "lecture": 11,
-        "topic_th": "การอินทิเกรตโดยการเปลี่ยนตัวแปร u และการเปลี่ยนขอบเขต",
+        "topic_th": "การอินทิเกรตโดยการแทนที่ตัวแปร u และการเปลี่ยนขอบเขต",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 10: อาจารย์เน้นว่าเมื่อเปลี่ยนเป็นตัวแปร u ต้องเปลี่ยนขอบเขตบน-ล่างทันที ห้ามนำขอบเขตเดิมของ x มาแทนในรูป u",
         "shortcut_tip": "ทริคลัด: มองหาอนุพันธ์ของฟังก์ชันย่อย เช่น ถ้าเห็น x^3 ให้แยกเป็น x^2 * x dx แล้วแทน u = x^2+1 จะได้ x dx = du/2 ในพริบตา"
     },
     {
-        "id": 2,
-        "filename": "q2_long_division.png",
+        "id": 4,
+        "filename": "q4_long_division.png",
         "pdf_file": "Week 11 (3).pdf",
         "page_num": 55,
         "slide_title": "7.4 Algebraic Identities: Long Division of Rational Functions",
         "lecture": 11,
-        "topic_th": "การหารยาวพหุนามและฟังก์ชันตรรกยะเกิน",
+        "topic_th": "การหารยาวพหุนามและจัดรูปพีชคณิต (บวกเข้าหักออก)",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 55: ถ้ากำลังเศษมากกว่าหรือเท่ากับส่วน ต้องตั้งหารยาวก่อนเสมอ มิฉะนั้นจะแยกเศษส่วนย่อยผิดทันที",
         "shortcut_tip": "ทริคลัด: ใช้วิธีบวกเข้า-หักออก หรือจับกลุ่มเศษส่วนเพื่อหลีกเลี่ยงการตั้งหารยาวหลายบรรทัด แล้วแยกเป็นรูป ln และ arctan"
     },
     {
-        "id": 3,
-        "filename": "q3_parts.png",
+        "id": 5,
+        "filename": "q5_parts.png",
         "pdf_file": "Week 11 (3).pdf",
         "page_num": 15,
-        "slide_title": "7.2 Integration by Parts: LIATE Rule & Looping Integrals",
+        "slide_title": "7.2 Integration by Parts: LIATE Rule & Tabular DI Method",
         "lecture": 11,
         "topic_th": "การอินทิเกรตทีละส่วน (ตาราง DI Method & Looping)",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 15: กรณีวนลูป (Looping e^(ax) cos(bx)) ต้องเลือก u ให้คงรูปแบบเดิมในการทำรอบที่สอง แล้วย้ายข้างกลับมาบวกกับ I ตัวเดิม",
         "shortcut_tip": "ทริคลัด: ใช้วิธีตาราง Tabular DI Method ใส่เครื่องหมาย + - + - สลับกัน ช่วยลดข้อผิดพลาดเรื่องเครื่องหมายลบซ้อนลบได้ 100%"
     },
     {
-        "id": 4,
-        "filename": "q4_trig_sub.png",
+        "id": 6,
+        "filename": "q6_trig_sub.png",
         "pdf_file": "Week 11 (3).pdf",
         "page_num": 57,
         "slide_title": "7.4 Trigonometric Substitutions: Right Triangle Reference",
         "lecture": 11,
-        "topic_th": "การแทนค่าด้วยตรีโกณมิติและสามเหลี่ยมอ้างอิง",
+        "topic_th": "การแทนที่ด้วยฟังก์ชันตรีโกณมิติและสามเหลี่ยมอ้างอิง",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 57: ห้ามลืมวาดรูปสามเหลี่ยมมุมฉากอ้างอิงเพื่อแปลงฟังก์ชันตรีโกณมิติกลับเป็นตัวแปร x ตอนจบ",
         "shortcut_tip": "ทริคลัด: ท่องจำรูปแบบ sqrt(a^2 - x^2) -> x = a sin(theta), sqrt(a^2 + x^2) -> x = a tan(theta), sqrt(x^2 - a^2) -> x = a sec(theta)"
     },
     {
-        "id": 5,
-        "filename": "q5_partial_fractions.png",
+        "id": 7,
+        "filename": "q7_partial_fractions.png",
         "pdf_file": "Week 11 (3).pdf",
         "page_num": 52,
         "slide_title": "7.4 Partial Fractions: Irreducible Quadratic Factors",
         "lecture": 11,
-        "topic_th": "การแยกเศษส่วนย่อยที่มีตัวประกอบกำลังสองแยกไม่ได้",
+        "topic_th": "การแยกเศษส่วนย่อย (ตัวประกอบเชิงเส้นและกำลังสองแยกไม่ได้)",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 52: สำหรับตัวส่วน (x^2 + a^2) ตัวเศษต้องสมมุติเป็น Bx + C จากนั้นแยกเทอม Bx เป็น ln และ C เป็น arctan",
         "shortcut_tip": "ทริคลัด: ใช้ Heaviside Cover-up Method หาเศษส่วนเชิงเส้นตรง A ได้ทันทีโดยเอามือปิดวงเล็บนั้นแล้วแทนค่าราก"
     },
     {
-        "id": 6,
-        "filename": "q6_reduction.png",
+        "id": 8,
+        "filename": "q8_reduction.png",
         "pdf_file": "Week 11 (3).pdf",
         "page_num": 21,
         "slide_title": "7.3 Tables of Integrals & Standard Reduction Formulas",
         "lecture": 11,
-        "topic_th": "ตารางสูตรอินทิเกรตสำเร็จและสูตรลดทอนกำลัง",
+        "topic_th": "การใช้อนุพันธ์ลดทอนและตารางสูตร",
         "professor_note": "ตรงกับสไลด์ Week 11 หน้า 21: ข้อสอบจะมีสูตรลดทอนมาให้ในโจทย์ ต้องแทนค่า n ให้ถูกต้องและระวังการอินทิเกรต sec(x) = ln|sec(x) + tan(x)|",
         "shortcut_tip": "ทริคลัด: สำหรับ sec^3(x) แทน n = 3 ลงในสูตรลดทอนรอบเดียว จะหลงเหลือเพียงอินทิเกรต sec(x) ซึ่งเปิดดูจากตารางสูตรในห้องสอบได้ทันที"
     },
     {
-        "id": 7,
-        "filename": "q7_geometric_series.png",
+        "id": 9,
+        "filename": "q9_geometric_series.png",
         "pdf_file": "Week 14.pdf",
         "page_num": 10,
         "slide_title": "9.2 Geometric Series: Convergence Criterion |r| < 1 & Sum Formula",
         "lecture": 14,
-        "topic_th": "อนุกรมเรขาคณิตอนันต์และการหาผลบวก",
+        "topic_th": "ลำดับและอนุกรมเรขาคณิต (เกณฑ์ |r| < 1 และผลบวก)",
         "professor_note": "ตรงกับสไลด์ Week 14 หน้า 10: อนุกรมเรขาคณิตเป็นอนุกรมเดียวที่ข้อสอบสั่งให้หา 'ค่าผลบวก (Sum)' ต้องเช็กเงื่อนไข |r| < 1 เสมอก่อนใช้สูตร S = a/(1-r)",
         "shortcut_tip": "ทริคลัด: พจน์แรก 'a' คือค่าที่ได้เมื่อแทนค่า n ตัวเริ่มต้นลงไปจริง ๆ (ไม่จำเป็นต้องเป็น n=0 เสมอไป) จะช่วยป้องกันการจำสูตรสับสน"
     },
     {
-        "id": 8,
-        "filename": "q8_ratio_test.png",
+        "id": 10,
+        "filename": "q10_ratio_test.png",
         "pdf_file": "Week 14.pdf",
         "page_num": 24,
         "slide_title": "9.4 Tests for Convergence: The Ratio Test (d'Alembert)",
         "lecture": 14,
-        "topic_th": "การทดสอบอัตราส่วนสำหรับการลู่เข้าของอนุกรมอนันต์",
+        "topic_th": "การตรวจสอบการลู่เข้าด้วย Ratio Test",
         "professor_note": "ตรงกับสไลด์ Week 14 หน้า 24: เมื่อเจอฟังก์ชันแฟกทอเรียล (n!) หรือเลขชี้กำลัง (c^n) ให้พุ่งเป้าไปที่ Ratio Test ทันที",
         "shortcut_tip": "ทริคลัด: ใช้ Dominant Term Analysis แยกตัดกลุ่มพจน์ (n+1)^k / n^k -> 1 ทิ้งได้เลย แล้วโฟกัสเฉพาะตัวคูณส่วนเกินของแฟกทอเรียล"
     },
     {
-        "id": 9,
-        "filename": "q9_power_series.png",
+        "id": 11,
+        "filename": "q11_power_series.png",
         "pdf_file": "Week 14.pdf",
         "page_num": 34,
         "slide_title": "9.5 Power Series & Interval of Convergence (Endpoint Testing)",
         "lecture": 14,
-        "topic_th": "อนุกรมกำลัง รัศมี และช่วงแห่งการลู่เข้า (ตรวจจุดขอบเขต)",
+        "topic_th": "อนุกรมกำลัง ช่วงและรัศมีแห่งการลู่เข้า (5 คะแนน)",
         "professor_note": "ตรงกับสไลด์ Week 14 หน้า 34-35: จุดตัดเกรดคือการเช็กจุดขอบเขต Endpoint ทั้งสองฝั่ง ห้ามเดาวงเล็บเปิดปิดเด็ดขาด ต้องแทนค่าทดสอบด้วย p-series หรือ Alternating Series",
         "shortcut_tip": "ทริคลัด: เมื่อแทนจุดขอบแล้วกลายเป็น 1/n คืออนุกรมฮาร์มอนิก (ลู่ออก วงเล็บโค้ง '(') ถ้าเป็น (-1)^n/n คืออนุกรมสลับ (ลู่เข้า วงเล็บเหลี่ยม ']') ท่องไว้ใช้ได้ทันที"
     },
     {
-        "id": 10,
-        "filename": "q10_maclaurin.png",
-        "pdf_file": "Week 15.pdf",
-        "page_num": 7,
-        "slide_title": "10.1 Taylor Polynomials & Maclaurin Series for Limits",
-        "lecture": 15,
-        "topic_th": "อนุกรมแมคลอรินและการหาลิมิตในรูปแบบยังไม่กำหนด",
-        "professor_note": "ตรงกับสไลด์ Week 15 หน้า 7: การหาลิมิตที่กำลังสูง (เช่น ส่วน x^4) การใช้อนุกรมแมคลอรินตัดพจน์จะเร็วกว่า L'Hôpital 4 รอบอย่างมหาศาล",
-        "shortcut_tip": "ทริคลัด: แทนค่าฟังก์ชันประกอบลงในอนุกรมมาตรฐานของ cos(x) และ e^u โดยตรง พจน์ต่ำกว่า x^4 จะหักล้างกันหมดจนเหลือสัมประสิทธิ์ตอบได้ทันที"
-    },
-    {
-        "id": 11,
-        "filename": "q11_taylor_series.png",
-        "pdf_file": "Week 15.pdf",
-        "page_num": 9,
-        "slide_title": "10.2 Taylor Series about x = a & General Sigma Notation",
-        "lecture": 15,
-        "topic_th": "อนุกรมเทย์เลอร์รอบจุด a ≠ 0 ในรูปสัญลักษณ์ซิกมา (5 คะแนน)",
-        "professor_note": "ตรงกับสไลด์ Week 15 หน้า 9: ข้อสอบ 5 คะแนนเต็มจะเน้นการหาสูตรอนุพันธ์อันดับ n f^(n)(a) และเขียนรูปย่อซิกมา พร้อมระบุรัศมี R",
-        "shortcut_tip": "ทริคลัด: หารัศมีการลู่เข้า R ได้อย่างรวดเร็วจากระยะทางบนแกนจริง จากจุดศูนย์กลาง a ไปยังจุดที่ฟังก์ชันหาค่าไม่ได้ (Singularity) เช่น 1/x^2 มีปัญหาที่ x=0 เมื่อศูนย์กลาง a=1 ดังนั้น R = |1 - 0| = 1"
-    },
-    {
         "id": 12,
-        "filename": "q12_taylor_approx.png",
+        "filename": "q12_taylor_applications.png",
         "pdf_file": "Week 15.pdf",
         "page_num": 27,
         "slide_title": "10.3 Finding & Using Taylor Series: Non-Elementary Integrals",
         "lecture": 15,
-        "topic_th": "การประมาณค่าอินทิกรัลที่ไม่มีปฏิยานุพันธ์และขอบเขตความคลาดเคลื่อน (5 คะแนน)",
+        "topic_th": "อนุกรมเทย์เลอร์และแมคลอรินกับการประยุกต์ใช้ (5 คะแนน)",
         "professor_note": "ตรงกับสไลด์ Week 15 หน้า 27: การประมาณค่าอินทิกรัล sin(x^2)/x ให้อินทิเกรตทีละพจน์ และใช้ทฤษฎีบทอนุกรมสลับ (AST Error Bound) หาขอบเขตความคลาดเคลื่อน",
         "shortcut_tip": "ทริคลัด: ค่าความคลาดเคลื่อนสูงสุดของอนุกรมสลับจะเท่ากับขนาดของพจน์แรกที่ถูกตัดทิ้ง (|Error| <= |b_{n+1}|) เสมอ นำพจน์ถัดไปมาคิดเลขได้ทันที"
     }
@@ -211,7 +211,7 @@ def generate_fallback_svg(item, output_path):
 
 def extract_or_generate_slides():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Extracting slide references into {OUTPUT_DIR}...")
+    print(f"Extracting 12 blueprint slide references into {OUTPUT_DIR}...")
 
     try:
         import pymupdf
@@ -241,16 +241,15 @@ def extract_or_generate_slides():
                     mat = pymupdf.Matrix(2.0, 2.0)
                     pix = page.get_pixmap(matrix=mat, alpha=False)
                     pix.save(str(target_png))
-                    print(f" -> Q{item['id']:02d}: Extracted {item['pdf_file']} (P.{item['page_num']}) -> {target_png.name}")
+                    print(f" -> ข้อ {item['id']:02d}: Extracted {item['pdf_file']} (P.{item['page_num']}) -> {target_png.name}")
                     success = True
                     rendered_count += 1
             except Exception as e:
-                print(f" -> Q{item['id']:02d}: Error extracting PDF page: {e}")
+                print(f" -> ข้อ {item['id']:02d}: Error extracting PDF page: {e}")
 
         if not success:
-            # Generate the pristine SVG fallback
             svg_file = generate_fallback_svg(item, target_png)
-            print(f" -> Q{item['id']:02d}: Generated Monochrome Reference Card -> {svg_file.name}")
+            print(f" -> ข้อ {item['id']:02d}: Generated Monochrome Reference Card -> {svg_file.name}")
             fallback_count += 1
 
     print(f"Completed: {rendered_count} extracted from actual PDFs, {fallback_count} generated as clean reference cards.")

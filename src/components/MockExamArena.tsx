@@ -123,6 +123,8 @@ export const MockExamArena: React.FC<MockExamArenaProps> = ({
 
   const categories = [
     'ทั้งหมด',
+    'Antiderivatives & IVP',
+    'FTC & Leibniz',
     'Substitution',
     'Long Division',
     'Parts',
@@ -132,8 +134,6 @@ export const MockExamArena: React.FC<MockExamArenaProps> = ({
     'Geometric Series',
     'Ratio Test',
     'Power Series',
-    'Maclaurin',
-    'Taylor Series',
     'Taylor Applications',
   ];
 

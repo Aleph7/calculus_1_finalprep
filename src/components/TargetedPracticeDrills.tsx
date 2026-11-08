@@ -13,6 +13,8 @@ export const TargetedPracticeDrills: React.FC = () => {
 
   const topics = [
     'ทั้งหมด',
+    'Antiderivatives & IVP',
+    'FTC & Leibniz',
     'Substitution',
     'Long Division',
     'Parts',
